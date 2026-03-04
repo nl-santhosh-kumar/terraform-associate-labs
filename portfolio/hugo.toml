@@ -2,6 +2,7 @@ baseURL = 'https://nl-santhosh-kumar.github.io/terraform-associate-labs/'
 languageCode = 'en-us'
 title = 'Santhosh | Terraform Labs'
 theme = 'PaperMod'
+paginate = 5  # Shows 5 challenges per page
 
 [params]
     env = 'production'
@@ -13,6 +14,7 @@ theme = 'PaperMod'
     defaultTheme = "dark" # Fits the "DevOps" aesthetic well
     ShowCodeCopyButtons = true
     mainSections = ["challenges", "posts"]
+    showScrollToTop = true
     
     [params.homeInfoParams]
         Title = "Terraform Lab Notes \U0001F4BB"
