@@ -1,7 +1,7 @@
 ---
 title: "03: Making Code Reusable with Variables"
-date: 2026-03-05
 series: ["Terraform Associate 004"]
+tags: ["Terraform", "Security", "Lab"]
 weight: 30
 showToc: true
 summary: "Moving away from hardcoded values to dynamic, variable-driven configurations."

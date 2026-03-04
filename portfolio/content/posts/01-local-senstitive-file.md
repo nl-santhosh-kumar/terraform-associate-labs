@@ -1,7 +1,7 @@
 ---
 title: "01: Securing Data with Local Sensitive Files"
 tags: ["Terraform", "Security", "Lab"]
-series: ["Terraform Associate"]
+series: ["Terraform Associate 004"]
 description: "Understanding how Terraform manages sensitive local data and file permissions."
 weight: 10
 showButtons: true
