@@ -12,18 +12,21 @@ theme = 'PaperMod'
     # PaperMod specific UI
     defaultTheme = "dark" # Fits the "DevOps" aesthetic well
     ShowCodeCopyButtons = true
-    mainSections = ["posts"]
+    mainSections = [\'challenges", "posts"]
     
     [params.homeInfoParams]
         Title = "Terraform Lab Notes \U0001F4BB"
         Content = "Hands-on labs for the Terraform Associate Certification. Covering Providers, State, Modules, and AWS integration."
+    
     [params.editPost]
         URL = "https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/portfolio/content"
         Text = "View Post Source"
         appendFilePath = true # This automatically adds /posts/challenge-01.md to the URL
+    
     [[params.socialIcons]]
         name = "github"
         url = "https://github.com/nl-santhosh-kumar/terraform-associate-labs"
+    
     [[params.socialIcons]]
         name = "linkedin"
         url = "https://www.linkedin.com/in/santhosh-kumar-r-04711024/"
