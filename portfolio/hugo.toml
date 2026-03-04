@@ -15,7 +15,8 @@ paginate = 5  # Shows 5 challenges per page
     ShowCodeCopyButtons = true
     mainSections = ["challenges", "posts"]
     showScrollToTop = true
-    
+    ShowSearchButton = true # Adds a magnifying glass to the menu
+
     [params.homeInfoParams]
         Title = "Terraform Lab Notes \U0001F4BB"
         Content = "Hands-on labs for the Terraform Associate Certification. Covering Providers, State, Modules, and AWS integration."
@@ -35,10 +36,10 @@ paginate = 5  # Shows 5 challenges per page
 
 [menu]
     [[menu.main]]
-        identifier = "labs"
-        name = "Lab Notes"
-        url = "/posts/"
-        weight = 10
+        identifier = "search"
+        name = "Search"
+        url = "/search/"
+        weight = 1
     [[menu.main]]
         identifier = "tags"
         name = "Topics"
@@ -57,3 +58,6 @@ paginate = 5  # Shows 5 challenges per page
     category = "categories"
     series = "series" # This allows you to group labs as "Terraform Associate Series"
     tag = "tags"
+
+[outputs]
+    home = ["HTML", "RSS", "JSON"] # This generates the search index
