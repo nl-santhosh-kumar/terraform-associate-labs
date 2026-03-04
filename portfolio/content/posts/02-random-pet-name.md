@@ -2,7 +2,7 @@
 title: "02: Generating Dynamic Resources with Random Pet"
 series: ["Terraform Associate"]
 tags: ["Terraform", "Security", "Lab"]
-weight: 2
+weight: 20
 showButtons: true
 description: "Learning how to use logical providers to generate unique resource naming."
 buttons:
