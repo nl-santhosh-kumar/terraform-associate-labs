@@ -1,0 +1,37 @@
+baseURL = 'https://nl-santhosh-kumar.github.io/terraform-associate-labs/'
+languageCode = 'en-us'
+title = 'Santhosh | Terraform Labs'
+theme = 'PaperMod'
+
+[params]
+    env = 'production'
+    title = "Terraform Associate Labs"
+    description = "Documentation and insights from my HashiCorp certification journey."
+    author = "Santhosh Kumar"
+    
+    # PaperMod specific UI
+    defaultTheme = "dark" # Fits the "DevOps" aesthetic well
+    ShowCodeCopyButtons = true
+    
+    [params.homeInfoParams]
+        Title = "Terraform Lab Notes \U0001F4BB"
+        Content = "Hands-on labs for the Terraform Associate Certification. Covering Providers, State, Modules, and AWS integration."
+
+    [[params.socialIcons]]
+        name = "github"
+        url = "https://github.com/nl-santhosh-kumar/terraform-associate-labs"
+    [[params.socialIcons]]
+        name = "linkedin"
+        url = "https://www.linkedin.com/in/santhosh-kumar-r-04711024/"
+
+[menu]
+    [[menu.main]]
+        identifier = "labs"
+        name = "Lab Notes"
+        url = "/posts/"
+        weight = 10
+    [[menu.main]]
+        identifier = "tags"
+        name = "Topics"
+        url = "/tags/"
+        weight = 20
