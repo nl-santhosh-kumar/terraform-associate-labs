@@ -35,3 +35,11 @@ theme = 'PaperMod'
         name = "Topics"
         url = "/tags/"
         weight = 20
+
+[security]
+  [security.funcs]
+    getenv = ['^HUGO_']
+  [security.http]
+    methods = ['(?i)GET|POST']
+  [security.path]
+    allow = ['..'] # This allows Hugo to read your lab folders
