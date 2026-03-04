@@ -1,10 +1,17 @@
 ---
 title: "02: Generating Dynamic Resources with Random Pet"
-date: 2024-03-05
 series: ["Terraform Associate"]
+tags: ["Terraform", "Security", "Lab"]
 weight: 2
-showToc: true
+showButtons: true
 description: "Learning how to use logical providers to generate unique resource naming."
+buttons:
+  - name: "📂 View Solution Files"
+    url: "https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/challenges/01-local-provider/README.md"
+    weight: 1
+  - name: "🚀 Full Repository"
+    url: "https://github.com/nl-santhosh-kumar/terraform-associate-labs"
+    weight: 2
 ---
 
 ## 🧠 The Concept: Logical Providers
@@ -15,9 +22,6 @@ They are used to:
 2. **Dynamic Testing:** Generating temporary names for lab environments.
 
 
-
----
-
 ## 📋 The Challenge
 The objective is to use the `random_pet` resource to generate a unique, human-readable name.
 
@@ -26,7 +30,6 @@ The objective is to use the `random_pet` resource to generate a unique, human-re
 2. **Length:** The pet name should consist of exactly **2 words**.
 3. **Separator:** Use a **hyphen (-)** between words (e.g., `fancy-cat`).
 
----
 
 ## 🚀 The Solution
 You can view the full configuration in my [Challenge 02 Repository Folder](https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/02-random-pet).
@@ -43,10 +46,11 @@ Since the `random_pet` resource lives only in the Terraform State, you won't see
 
 ### 1. Using Terraform Show
 This is the easiest way to see the attributes of your generated pet:
-```bash
-terraform show
 ```
+bash
+terraform show
 
+```
 ## Expected output
 ### random_pet.my-pet:
 ```
@@ -65,3 +69,14 @@ Why? Because the name is now locked in the terraform.tfstate file. To get a new 
 ```
 terraform apply -replace="random_pet.my-pet"
 ```
+---
+## 📚 Official Resources & Documentation
+
+To deepen your understanding of the concepts used in this lab, I recommend reviewing the following official HashiCorp documentation:
+
+| Resource | Description |
+| :--- | :--- |
+| [Random Provider](https://registry.terraform.io/providers/hashicorp/random/latest/docs) | Official documentation for the Logical Random provider. |
+| [random_pet (Resource)](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) | Detailed syntax and attributes for the pet resource. |
+| [Terraform State](https://developer.hashicorp.com/terraform/language/state) | How Terraform tracks the relationship between your code and resources. |
+| [Command: show](https://developer.hashicorp.com/terraform/cli/commands/show) | Official CLI reference for inspecting state and plan files. |

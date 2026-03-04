@@ -1,6 +1,7 @@
 ---
 title: "01: Securing Data with Local Sensitive Files"
 tags: ["Terraform", "Security", "Lab"]
+series: ["Terraform Associate"]
 description: "Understanding how Terraform manages sensitive local data and file permissions."
 showButtons: true
 buttons:
@@ -45,10 +46,9 @@ resource "local_sensitive_file" "private_data" {
     file_permission = "0600"
 }
 
----
 
 Why 0600?
-In Linux/Unix systems, permissions are represented by three numbers:
+In Linux or Unix systems, permissions are represented by three numbers:
 6 (Owner): Read (4) + Write (2) = 6.
 0 (Group): No access.
 0 (Others): No access.
