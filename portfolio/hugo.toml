@@ -43,3 +43,8 @@ theme = 'PaperMod'
     methods = ['(?i)GET|POST']
   [security.path]
     allow = ['..'] # This allows Hugo to read your lab folders
+
+[taxonomies]
+    category = "categories"
+    series = "series" # This allows you to group labs as "Terraform Associate Series"
+    tag = "tags"
