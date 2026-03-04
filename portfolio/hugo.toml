@@ -20,7 +20,17 @@ paginate = 5  # Shows 5 challenges per page
     [params.homeInfoParams]
         Title = "Terraform Lab Notes \U0001F4BB"
         Content = "Hands-on labs for the Terraform Associate Certification. Covering Providers, State, Modules, and AWS integration."
-    
+    [params.profileMode]
+        enabled = true
+        title = "Santhosh Kumar"
+        subtitle = " DevOps Engineer | Terraform Associate Candidate"
+        [[params.profileMode.buttons]]
+            name = "View Challenges"
+            url = "/challenges"
+        [[params.profileMode.buttons]]
+            name = "GitHub Profile"
+            url = "https://github.com/nl-santhosh-kumar"
+
     [params.editPost]
         URL = "https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/portfolio/content"
         Text = "View Post Source"
