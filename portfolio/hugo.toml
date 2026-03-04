@@ -12,7 +12,7 @@ theme = 'PaperMod'
     # PaperMod specific UI
     defaultTheme = "dark" # Fits the "DevOps" aesthetic well
     ShowCodeCopyButtons = true
-    mainSections = [\'challenges", "posts"]
+    mainSections = ["challenges", "posts"]
     
     [params.homeInfoParams]
         Title = "Terraform Lab Notes \U0001F4BB"
