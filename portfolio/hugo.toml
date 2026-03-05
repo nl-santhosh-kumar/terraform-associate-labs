@@ -70,4 +70,7 @@ paginate = 5  # Shows 5 challenges per page
 
 [params.search]
     enable = true
+    type = "fuse" # Ensure the search engine type is defined
+    showRemoteIcon = false
+    # This ensures the search engine knows exactly where the index is
     searchIndex = "index.json"

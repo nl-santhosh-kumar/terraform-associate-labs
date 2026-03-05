@@ -4,17 +4,18 @@
         <h1>{{ .title | default site.Title | markdownify }}</h1>
         <span>{{ .subtitle | markdownify }}</span>
 
-        <div id="searchbox" style="margin-top: 25px;">
-            <input id="searchInput" autofocus placeholder="Search Terraform modules..." 
-                type="search" autocomplete="off">
-            <ul id="searchResults"></ul>
+        <div id="searchbox" style="margin: 25px auto; max-width: 600px; position: relative;">
+            <input id="searchInput" autofocus placeholder="Search Terraform tutorials..." 
+                type="search" autocomplete="off"
+                style="width: 100%; padding: 12px 25px; border-radius: 24px; border: 1px solid var(--border); background: var(--code-bg); color: var(--content); outline: none;">
+            
+            <ul id="searchResults" aria-label="search results"></ul>
         </div>
 
-        <div class="buttons" style="justify-content: center; margin-top: 20px;">
-            {{- /* Button 1: Just focuses the search bar */ -}}
-            <button class="google-btn" onclick="document.getElementById('searchInput').focus()">Google Search</button>
+        <div class="buttons" style="justify-content: center; display: flex; gap: 10px; margin-bottom: 20px;">
+            <button class="google-btn" onclick="document.getElementById('searchInput').focus()">Terraform Search</button>
             
-            {{- /* Button 2: Goes to the first post by weight */ -}}
+            {{- /* Logic to find the post with Weight 1 */ -}}
             {{- $firstPost := (where site.RegularPages "Section" "posts").ByWeight | first 1 -}}
             {{- range $firstPost }}
             <a href="{{ .Permalink }}" class="google-btn">I'm Feeling Lucky</a>
@@ -25,3 +26,5 @@
     </div>
     {{- end }}
 </div>
+
+<script defer src="{{ "js/search.js" | relURL }}"></script>
