@@ -1,0 +1,29 @@
+<div class="profile">
+    {{- with site.Params.profileMode }}
+    <div class="profile_inner">
+        <h1>{{ .title | default site.Title | markdownify }}</h1>
+        <span>{{ .subtitle | markdownify }}</span>
+
+        <div id="searchbox" style="margin: 25px 0;">
+            <input id="searchInput" autofocus placeholder="Search Terraform tutorials..." 
+                type="search" autocomplete="off"
+                style="width: 100%; max-width: 500px; padding: 12px 20px; border-radius: 25px; border: 1px solid var(--border); background: var(--code-bg); color: var(--content); outline: none;">
+            <ul id="searchResults" style="list-style: none; padding: 0; margin-top: 10px; text-align: left;"></ul>
+        </div>
+
+        {{- partial "social_icons.html" (dict "context" . "align" true) -}}
+
+        {{- with .buttons }}
+        <div class="buttons">
+            {{- range . }}
+            <a class="button" href="{{ .url | absURL }}" rel="noopener" title="{{ .name }}">
+                <span class="button-inner">{{ .name }}</span>
+            </a>
+            {{- end }}
+        </div>
+        {{- end }}
+    </div>
+    {{- end }}
+</div>
+
+<script defer src="{{ "assets/js/search.js" | absURL }}"></script>

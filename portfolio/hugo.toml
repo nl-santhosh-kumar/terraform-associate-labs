@@ -21,13 +21,16 @@ paginate = 5  # Shows 5 challenges per page
         Title = "Terraform Lab Notes \U0001F4BB"
         Content = "Hands-on labs for the Terraform Associate Certification. Covering Providers, State, Modules, and AWS integration."
     [params.profileMode]
-        enabled = false
+        enabled = true
         title = "Hi there! I'm Santhosh 👋"
         subtitle = "Automating the Cloud, One Challenge at a Time"
         Content = """
             Welcome! This site documents my path toward the **Terraform Associate (004)** certification. 
 I am exploring the latest infrastructure-as-code standards, from local state management to **HCP Terraform** workflows. Each challenge below is a hands-on lab designed to master the 004 objectives.
 """
+        [[params.profileMode.buttons]]
+            name = "Browse All Posts"
+            url = "posts"
     
     [[params.socialIcons]]
         name = "github"
@@ -65,3 +68,6 @@ I am exploring the latest infrastructure-as-code standards, from local state man
 
 [outputs]
     home = ["HTML", "RSS", "JSON"] # This generates the search index
+
+[params.search]
+    enable = true
