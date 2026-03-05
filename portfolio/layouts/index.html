@@ -1,0 +1,7 @@
+{{- define "main" -}}
+    {{- if .IsHome -}}
+        {{- partial "index_profile.html" . -}}
+    {{- else -}}
+        {{- partial "index_list.html" . -}}
+    {{- end -}}
+{{- end -}}

@@ -6,7 +6,6 @@ paginate = 5  # Shows 5 challenges per page
 
 [params]
     env = 'production'
-    title = "Terraform Associate Labs"
     description = "Documentation and insights from my HashiCorp certification journey."
     author = "Santhosh Kumar"
     

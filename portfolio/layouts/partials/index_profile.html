@@ -4,16 +4,13 @@
         <h1>{{ .title | default site.Title | markdownify }}</h1>
         <span>{{ .subtitle | markdownify }}</span>
 
-       <div id="searchbox" style="margin: 25px auto; max-width: 584px; position: relative;">
-    <input id="searchInput" autofocus placeholder="Search Terraform labs..." type="search" autocomplete="off">
-    
-    <ul id="searchResults" style="display: none;"></ul>
-</div>
+        <div id="searchbox">
+            <input id="searchInput" autofocus placeholder="Search Terraform labs..." type="search" autocomplete="off">
+            <ul id="searchResults" style="display: none;"></ul>
+        </div>
 
-        <div class="buttons" style="justify-content: center; display: flex; gap: 10px; margin-bottom: 20px;">
+        <div class="buttons">
             <button class="google-btn" onclick="document.getElementById('searchInput').focus()">Terraform Search</button>
-            
-            {{- /* Logic to find the post with Weight 1 */ -}}
             {{- $firstPost := (where site.RegularPages "Section" "posts").ByWeight | first 1 -}}
             {{- range $firstPost }}
             <a href="{{ .Permalink }}" class="google-btn">I'm Feeling Lucky</a>
@@ -21,31 +18,24 @@
         </div>
 
         {{- partial "social_icons.html" (dict "context" . "align" true) -}}
+
+        <div class="roadmap-section">
+            <h2 class="roadmap-title">Learning Path</h2>
+            <div class="roadmap-grid">
+                {{- range (where site.RegularPages "Section" "posts").ByWeight }}
+                <a href="{{ .Permalink }}" class="roadmap-card">
+                    <span class="roadmap-no">{{ .Weight }}</span>
+                    <span class="roadmap-label">{{ .Title }}</span>
+                </a>
+                {{- end }}
+            </div>
+        </div>
     </div>
     {{- end }}
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 <script defer src="{{ "js/search.js" | relURL }}"></script>
 <script>
-    window.addEventListener('DOMContentLoaded', () => {
-        // 1. Tell PaperMod search exactly where the JSON is
-        // This fixes the 404 issue in subfolders
-        window.searchIndex = '{{ "index.json" | relURL }}';
-
-        const input = document.getElementById('searchInput');
-        const results = document.getElementById('searchResults');
-
-        if (input) {
-            // Trigger the search logic
-            input.addEventListener('focus', () => {
-                // This ensures Fuse.js loads your JSON data
-                console.log("Initializing search from: " + window.searchIndex);
-            }, { once: true });
-
-            // Toggle visibility of the Google-style dropdown
-            input.addEventListener('input', () => {
-                results.style.display = input.value.length > 0 ? 'block' : 'none';
-            });
-        }
-    });
+    window.searchIndex = '{{ "index.json" | relURL }}';
 </script>
