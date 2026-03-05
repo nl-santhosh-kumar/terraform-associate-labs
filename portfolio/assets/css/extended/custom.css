@@ -32,3 +32,23 @@
     color: #e8eaed;
     border: 1px solid #303134;
 }
+
+/* Ensure home page results float over other content */
+.profile_inner #searchResults {
+    position: absolute;
+    width: 100%;
+    max-width: 500px; /* Match your bar width */
+    background: var(--theme);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    z-index: 999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    margin-top: 5px;
+}
+
+.profile_inner #searchResults li {
+    list-style: none;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+}

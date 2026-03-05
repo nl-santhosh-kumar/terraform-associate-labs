@@ -1,4 +1,4 @@
-baseURL = 'https://nl-santhosh-kumar.github.io/terraform-associate-labs/'
+baseurl = "https://nl-santhosh-kumar.github.io/terraform-associate-labs/"
 languageCode = 'en-us'
 title = 'Santhosh | Terraform Labs'
 theme = 'PaperMod'

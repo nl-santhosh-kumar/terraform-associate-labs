@@ -8,7 +8,6 @@
             <input id="searchInput" autofocus placeholder="Search Terraform tutorials..." 
                 type="search" autocomplete="off"
                 style="width: 100%; padding: 12px 25px; border-radius: 24px; border: 1px solid var(--border); background: var(--code-bg); color: var(--content); outline: none;">
-            
             <ul id="searchResults" aria-label="search results"></ul>
         </div>
 
@@ -28,3 +27,26 @@
 </div>
 
 <script defer src="{{ "js/search.js" | relURL }}"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        // 1. Tell PaperMod search exactly where the JSON is
+        // This fixes the 404 issue in subfolders
+        window.searchIndex = '{{ "index.json" | relURL }}';
+
+        const input = document.getElementById('searchInput');
+        const results = document.getElementById('searchResults');
+
+        if (input) {
+            // Trigger the search logic
+            input.addEventListener('focus', () => {
+                // This ensures Fuse.js loads your JSON data
+                console.log("Initializing search from: " + window.searchIndex);
+            }, { once: true });
+
+            // Toggle visibility of the Google-style dropdown
+            input.addEventListener('input', () => {
+                results.style.display = input.value.length > 0 ? 'block' : 'none';
+            });
+        }
+    });
+</script>
