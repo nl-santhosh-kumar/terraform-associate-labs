@@ -1,0 +1,34 @@
+/* Google Style Buttons */
+.google-btn {
+    background-color: var(--tertiary); /* Light gray in PaperMod */
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: var(--content);
+    font-family: inherit;
+    font-size: 14px;
+    margin: 11px 4px;
+    padding: 0 16px;
+    line-height: 27px;
+    height: 36px;
+    min-width: 54px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.google-btn:hover {
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    background-image: linear-gradient(top,#f8f8f8,#f1f1f1);
+    background-color: var(--border);
+    border: 1px solid var(--secondary);
+    color: var(--primary);
+}
+
+/* Dark Mode adjustment for buttons */
+[data-theme='dark'] .google-btn {
+    background-color: #303134;
+    color: #e8eaed;
+    border: 1px solid #303134;
+}

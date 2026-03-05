@@ -17,28 +17,27 @@ paginate = 5  # Shows 5 challenges per page
     showScrollToTop = true
     ShowSearchButton = true # Adds a magnifying glass to the menu
 
-    [params.homeInfoParams]
-        Title = "Terraform Lab Notes \U0001F4BB"
-        Content = "Hands-on labs for the Terraform Associate Certification. Covering Providers, State, Modules, and AWS integration."
     [params.profileMode]
         enabled = true
-        title = "Hi there! I'm Santhosh 👋"
-        subtitle = "Automating the Cloud, One Challenge at a Time"
-        Content = """
-            Welcome! This site documents my path toward the **Terraform Associate (004)** certification. 
-I am exploring the latest infrastructure-as-code standards, from local state management to **HCP Terraform** workflows. Each challenge below is a hands-on lab designed to master the 004 objectives.
-"""
+        title = "Terraform Associate Labs"
+        subtitle = "Master Infrastructure as Code with Hands-on Labs"
+       
+        # We will add buttons that look like Google's
         [[params.profileMode.buttons]]
-            name = "Browse All Posts"
-            url = "posts"
+        name = "Search Tutorials"
+        url = "#" # This stays on the page to focus the search bar
+        
+        [[params.profileMode.buttons]]
+        name = "I'm Feeling Lucky"
+        url = "/posts/" # Or link to your first specific tutorial
+
+        [[params.socialIcons]]
+            name = "github"
+            url = "https://github.com/nl-santhosh-kumar/terraform-associate-labs"
     
-    [[params.socialIcons]]
-        name = "github"
-        url = "https://github.com/nl-santhosh-kumar/terraform-associate-labs"
-    
-    [[params.socialIcons]]
-        name = "linkedin"
-        url = "https://www.linkedin.com/in/santhosh-kumar-r-04711024/"
+        [[params.socialIcons]]
+            name = "linkedin"
+            url = "https://www.linkedin.com/in/santhosh-kumar-r-04711024/"
 
 [menu]
     [[menu.main]]
@@ -71,3 +70,4 @@ I am exploring the latest infrastructure-as-code standards, from local state man
 
 [params.search]
     enable = true
+    searchIndex = "index.json"
