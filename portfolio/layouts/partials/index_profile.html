@@ -4,12 +4,11 @@
         <h1>{{ .title | default site.Title | markdownify }}</h1>
         <span>{{ .subtitle | markdownify }}</span>
 
-        <div id="searchbox" style="margin: 25px auto; max-width: 600px; position: relative;">
-            <input id="searchInput" autofocus placeholder="Search Terraform tutorials..." 
-                type="search" autocomplete="off"
-                style="width: 100%; padding: 12px 25px; border-radius: 24px; border: 1px solid var(--border); background: var(--code-bg); color: var(--content); outline: none;">
-            <ul id="searchResults" aria-label="search results"></ul>
-        </div>
+       <div id="searchbox" style="margin: 25px auto; max-width: 584px; position: relative;">
+    <input id="searchInput" autofocus placeholder="Search Terraform labs..." type="search" autocomplete="off">
+    
+    <ul id="searchResults" style="display: none;"></ul>
+</div>
 
         <div class="buttons" style="justify-content: center; display: flex; gap: 10px; margin-bottom: 20px;">
             <button class="google-btn" onclick="document.getElementById('searchInput').focus()">Terraform Search</button>
