@@ -2,13 +2,9 @@
 <div class="post-single">
     <h1 class="post-title">{{ .Title }}</h1>
 
-    {{/* 1. Safely fetch the data */}}
     {{- $questions := index site.Data.question_master -}}
     
-    {{/* 2. Check if data exists before calling 'len' */}}
     {{- if $questions -}}
-        {{- $count := len $questions -}}
-
         <div id="quiz-engine" class="quiz-box" data-questions='{{ $questions | jsonify }}'>
             <div id="quiz-ui">
                 <div class="progress-container"><div id="progress-fill"></div></div>
@@ -18,49 +14,89 @@
                 </div>
                 <div id="q-body"><p>Loading questions...</p></div>
                 <div id="q-feedback"></div>
-                <button id="next-btn">Next Question</button>
+                <button id="next-btn" style="display: none;">Next Question</button>
             </div>
         </div>
     {{- else -}}
-        {{/* 3. Helpful error message if the file is missing */}}
         <div class="quiz-box" style="border-color: #e74c3c;">
-            <p style="color: #e74c3c; font-weight: bold;">
-                ⚠️ Data Error: Hugo cannot find quiz questions.
-            </p>
-            <p>Please ensure the file exists and is valid JSON.</p>
+            <p style="color: #e74c3c; font-weight: bold;">⚠️ Data Error: Hugo cannot find quiz questions.</p>
         </div>
     {{- end -}}
 </div>
 
 <script>
-    const rawData = document.getElementById('quiz-engine').getAttribute('data-questions');
-    const allQuestionsPool = JSON.parse(rawData);
-
+    // 1. DATA INITIALIZATION
+    const engine = document.getElementById('quiz-engine');
+    const allQuestionsPool = JSON.parse(engine.getAttribute('data-questions'));
+    
     let sessionQuestions = [];
     let currentIdx = 0;
     let score = 0;
     let answerKey = null;
 
-    // Start the quiz automatically on page load
+    // 2. LIFECYCLE
     document.addEventListener('DOMContentLoaded', () => {
-        startQuiz(10); 
+        const nextBtn = document.getElementById('next-btn');
+        if (nextBtn) {
+            nextBtn.onclick = () => {
+                currentIdx++;
+                if (currentIdx < sessionQuestions.length) {
+                    renderQuestion();
+                } else {
+                    showResults();
+                }
+            };
+        }
+        showMenu(); 
     });
 
-    async function startQuiz(count) {
-        // 1. Fetch the secret answers from the static folder
-        try {
-            // Adjust the path if your base URL is different
-            const response = await fetch('{{ "answers_master.json" | absURL }}');
-            if (!response.ok) throw new Error('Answer key not found');
-            answerKey = await response.json();
-        } catch (err) {
-            console.error("Quiz Data Error:", err);
-            document.getElementById('q-body').innerHTML = `<p style="color:red">Error loading quiz data. Please ensure static/answers_master.json exists.</p>`;
-            return;
+    // 3. CORE FUNCTIONS
+    function showMenu() {
+        const qBody = document.getElementById('q-body');
+        const qHeader = document.getElementById('q-header');
+        const nextBtn = document.getElementById('next-btn');
+        
+        if(nextBtn) nextBtn.style.display = "none";
+        if(qHeader) qHeader.style.visibility = "hidden"; 
+        
+        const categories = [...new Set(allQuestionsPool.map(q => q.category || "General"))];
+
+        qBody.innerHTML = `
+            <div class="results-screen">
+                <h2 style="margin-bottom:20px; color:#844FBA;">Terraform Practice Exam</h2>
+                <p style="margin-bottom:20px;">Select a category to begin 10 random questions:</p>
+                <div class="options-grid">
+                    <button class="opt-btn" onclick="startQuiz(10, 'all')" style="text-align:center; font-weight:bold; border-color:#844FBA;">🚀 Full Mixed Exam</button>
+                    ${categories.map(cat => `
+                        <button class="opt-btn" onclick="startQuiz(10, '${cat}')" style="text-align:center;">📂 ${cat}</button>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    async function startQuiz(count, category) {
+        currentIdx = 0;
+        score = 0;
+        document.getElementById('q-score').innerText = `Score: 0`;
+        document.getElementById('q-header').style.visibility = "visible";
+
+        if (!answerKey) {
+            try {
+                const response = await fetch('{{ "answers_master.json" | absURL }}');
+                if (!response.ok) throw new Error('Answer key not found');
+                answerKey = await response.json();
+            } catch (err) {
+                document.getElementById('q-body').innerHTML = `<p style="color:red">Error loading quiz data.</p>`;
+                return;
+            }
         }
 
-        // 2. Shuffle and pick questions
-        sessionQuestions = [...allQuestionsPool]
+        let pool = (category === 'all') 
+            ? allQuestionsPool 
+            : allQuestionsPool.filter(q => q.category === category);
+
+        sessionQuestions = [...pool]
             .sort(() => 0.5 - Math.random())
             .slice(0, count);
         
@@ -69,18 +105,17 @@
 
     function renderQuestion() {
         const q = sessionQuestions[currentIdx];
-        const feedback = document.getElementById('q-feedback');
+        const qBody = document.getElementById('q-body');
         const nextBtn = document.getElementById('next-btn');
+        const progressFill = document.getElementById('progress-fill');
         
-        // Update Progress Bar & Text
+        nextBtn.style.display = "none";
+        document.getElementById('q-feedback').innerHTML = "";
+        
         const progressPercent = (currentIdx / sessionQuestions.length) * 100;
-        document.getElementById('progress-fill').style.width = `${progressPercent}%`;
+        progressFill.style.width = `${progressPercent}%`;
         document.getElementById('q-progress-text').innerText = `Question ${currentIdx + 1} of ${sessionQuestions.length}`;
         
-        feedback.innerHTML = ""; 
-        nextBtn.style.display = "none";
-        
-        const qBody = document.getElementById('q-body');
         qBody.innerHTML = `
             <p class="question-text"><strong>${q.question}</strong></p>
             <div class="options-grid">
@@ -94,10 +129,8 @@
         const isCorrect = btn.innerText.trim().toUpperCase().startsWith(truth.a.toUpperCase());
         const qBody = document.getElementById('q-body');
         
-        // Disable choices
         qBody.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
 
-        // Highlight selected button
         if (isCorrect) {
             btn.classList.add('correct');
             score++;
@@ -105,9 +138,7 @@
             btn.classList.add('incorrect');
         }
 
-        // Late Reveal: Show Explanation
-        const feedback = document.getElementById('q-feedback');
-        feedback.innerHTML = `
+        document.getElementById('q-feedback').innerHTML = `
             <div class="explanation-box ${isCorrect ? 'border-correct' : 'border-incorrect'}">
                 <strong style="color: ${isCorrect ? '#2ecc71' : '#e74c3c'}">
                     ${isCorrect ? '✓ Correct!' : '✗ Incorrect. Answer: ' + truth.a}
@@ -119,33 +150,20 @@
         document.getElementById('q-score').innerText = `Score: ${score}`;
         const nextBtn = document.getElementById('next-btn');
         nextBtn.style.display = "block";
-        
-        if (currentIdx === sessionQuestions.length - 1) {
-            nextBtn.innerText = "Show Final Results";
-        }
+        if (currentIdx === sessionQuestions.length - 1) nextBtn.innerText = "Show Final Results";
     }
-
-    document.getElementById('next-btn').onclick = () => {
-        currentIdx++;
-        if (currentIdx < sessionQuestions.length) {
-            renderQuestion();
-        } else {
-            showResults();
-        }
-    };
 
     function showResults() {
         document.getElementById('progress-fill').style.width = `100%`;
         document.getElementById('q-header').style.display = "none";
-        
         const percentage = Math.round((score / sessionQuestions.length) * 100);
         
         document.getElementById('q-body').innerHTML = `
             <div class="results-screen">
                 <h2>Quiz Complete!</h2>
                 <div class="final-score">${score} / ${sessionQuestions.length}</div>
-                <p>${percentage}% - ${percentage >= 70 ? "You're ready for the Associate Exam!" : "Keep practicing!"}</p>
-                <button onclick="location.reload()" class="btn-primary">Would you like to take another quiz?</button>
+                <p>${percentage}% - ${percentage >= 70 ? "Ready for Exam!" : "Keep practicing!"}</p>
+                <button onclick="location.reload()" class="btn-primary">Restart Quiz</button>
             </div>
         `;
         document.getElementById('q-feedback').innerHTML = "";
@@ -154,97 +172,23 @@
 </script>
 
 <style>
-    .quiz-box { 
-        background: var(--tertiary); 
-        padding: 30px; 
-        border-radius: 12px; 
-        border: 1px solid var(--border);
-        max-width: 700px;
-        margin: 20px auto;
-    }
-
-    /* Progress Bar */
-    .progress-container {
-        width: 100%;
-        background: var(--border);
-        height: 10px;
-        border-radius: 5px;
-        margin-bottom: 20px;
-        overflow: hidden;
-    }
-    #progress-fill {
-        width: 0%;
-        height: 100%;
-        background: #844FBA; /* Terraform Pink/Purple */
-        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    #q-header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-        font-weight: bold;
-        color: var(--secondary);
-    }
-
-    .question-text { font-size: 1.25em; line-height: 1.4; margin-bottom: 25px; }
-
+    /* ... Keep your existing CSS here ... */
+    .quiz-box { background: var(--tertiary); padding: 30px; border-radius: 12px; border: 1px solid var(--border); max-width: 700px; margin: 20px auto; }
+    .progress-container { width: 100%; background: var(--border); height: 10px; border-radius: 5px; margin-bottom: 20px; overflow: hidden; }
+    #progress-fill { width: 0%; height: 100%; background: #844FBA; transition: width 0.4s; }
+    #q-header { display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: bold; }
+    .question-text { font-size: 1.25em; margin-bottom: 25px; }
     .options-grid { display: grid; gap: 12px; }
-
-    .opt-btn {
-        text-align: left;
-        padding: 15px;
-        background: var(--theme);
-        color: var(--content);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-size: 1em;
-    }
-
-    /* Pink Hover State */
-    .opt-btn:hover:not([disabled]) {
-        border-color: #844FBA;
-        color: #844FBA;
-    }
-
-    .opt-btn.correct { background: #2ecc71 !important; color: white !important; border-color: #27ae60; }
-    .opt-btn.incorrect { background: #e74c3c !important; color: white !important; border-color: #c0392b; }
-
-    .explanation-box {
-        padding: 15px;
-        border-radius: 8px;
-        margin-top: 20px;
-        background: var(--theme);
-    }
-    .border-correct { border-left: 5px solid #2ecc71; }
-    .border-incorrect { border-left: 5px solid #e74c3c; }
-    .explanation-text { margin-top: 8px; font-size: 0.95em; opacity: 0.9; }
-
-    #next-btn {
-        margin-top: 20px;
-        width: 100%;
-        padding: 15px;
-        background: #844FBA;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .results-screen { text-align: center; padding: 20px; }
-    .final-score { font-size: 3em; font-weight: 800; margin: 15px 0; color: #844FBA; }
-    
-    .btn-primary {
-        padding: 12px 25px;
-        background: #844FBA;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: bold;
-    }
+    .opt-btn { text-align: left; padding: 15px; background: var(--theme); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; }
+    .opt-btn:hover:not([disabled]) { border-color: #844FBA; color: #844FBA; }
+    .opt-btn.correct { background: #2ecc71 !important; color: white !important; }
+    .opt-btn.incorrect { background: #e74c3c !important; color: white !important; }
+    .explanation-box { padding: 15px; border-radius: 8px; margin-top: 20px; background: var(--theme); border-left: 5px solid transparent; }
+    .border-correct { border-left-color: #2ecc71; }
+    .border-incorrect { border-left-color: #e74c3c; }
+    #next-btn { margin-top: 20px; width: 100%; padding: 15px; background: #844FBA; color: white; border: none; border-radius: 8px; cursor: pointer; }
+    .results-screen { text-align: center; }
+    .final-score { font-size: 3em; color: #844FBA; }
+    .btn-primary { padding: 12px 25px; background: #844FBA; color: white; border: none; border-radius: 6px; cursor: pointer; }
 </style>
 {{- end -}}
