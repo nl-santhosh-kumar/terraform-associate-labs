@@ -216,3 +216,50 @@ code, pre {
 .google-btn:focus {
     border-color: var(--secondary);
 }
+
+
+
+
+.paginav {
+    margin: 30px 0;
+    display: flex;
+    line-height: 30px;
+    border-radius: 8px;
+    background: var(--code-bg); /* Use theme's code background */
+}
+
+.paginav a {
+    padding: 15px;
+    transition: background 0.2s ease;
+}
+
+.paginav a:hover {
+    background: var(--tertiary); /* Highlight on hover */
+}
+
+.paginav .prev {
+    border-right: 1px solid var(--border);
+    flex: 1;
+}
+
+.paginav .next {
+    flex: 1;
+    text-align: right;
+}
+
+/* Add 'Previous' and 'Next' labels above the titles */
+.paginav .prev::before {
+    content: "← Previous Lesson";
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--secondary);
+}
+
+.paginav .next::after {
+    content: "Next Lesson →";
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--secondary);
+}

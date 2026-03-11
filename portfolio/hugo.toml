@@ -15,7 +15,8 @@ paginate = 5  # Shows 5 challenges per page
     mainSections = ["challenges", "posts"]
     showScrollToTop = true
     ShowSearchButton = true # Adds a magnifying glass to the menu
-
+    ShowPostNavLinks = true
+    
     [params.profileMode]
         enabled = true
         title = "Terraform Associate Labs"
@@ -37,6 +38,9 @@ paginate = 5  # Shows 5 challenges per page
         [[params.socialIcons]]
             name = "linkedin"
             url = "https://www.linkedin.com/in/santhosh-kumar-r-04711024/"
+
+[frontmatter]
+    date = ["date", "publishDate", "lastmod"]
 
 [menu]
     [[menu.main]]
