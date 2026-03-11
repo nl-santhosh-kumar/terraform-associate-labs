@@ -1,0 +1,12 @@
+[
+  {
+    "id": "tf-001",
+    "question": "What is the command to view the current state file?",
+    "options": ["A) terraform state list", "B) terraform show", "C) terraform plan"]
+  },
+  {
+    "id": "tf-002",
+    "question": "Which file is created after running 'terraform init'?",
+    "options": ["A) .terraform.lock.hcl", "B) terraform.tfstate", "C) main.tf"]
+  }
+]

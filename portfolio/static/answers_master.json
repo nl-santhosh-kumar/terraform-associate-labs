@@ -1,0 +1,10 @@
+{
+  "tf-001": {
+    "a": "B",
+    "e": "The 'terraform show' command provides a human-readable version of the state."
+  },
+  "tf-002": {
+    "a": "A",
+    "e": "The dependency lock file ensures provider versions remain consistent."
+  }
+}
