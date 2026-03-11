@@ -42,3 +42,38 @@
     color: var(--primary);
     font-size: 1.2rem;
 }
+
+/* Search results dropdown */
+#searchbox { position: relative; width: 100%; max-width: 800px; }
+.search-results {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: block;
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.5rem;
+    z-index: 50;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.search-results {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    max-height: 56vh;
+    overflow: auto;
+}
+.search-results .roadmap-card {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 0.8rem;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+.search-results .roadmap-no { font-size: 1rem; margin-right: 0.75rem; }
+.search-results .roadmap-label { font-size: 0.95rem; }

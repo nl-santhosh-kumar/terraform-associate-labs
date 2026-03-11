@@ -12,6 +12,7 @@ async function initSearch() {
         const input = document.getElementById('searchInput');
         const roadmap = document.querySelector('.roadmap-section'); 
         const results = document.getElementById('searchResults');
+        const searchbox = document.getElementById('searchbox');
 
         input.addEventListener('input', () => {
             const query = input.value.trim();
@@ -22,28 +23,58 @@ async function initSearch() {
 
                 // 2. Clear previous results and hide roadmap
                 results.innerHTML = '';
-                roadmap.style.opacity = '0.1';
-                roadmap.style.pointerEvents = 'none';
+                // hide the roadmap section completely while showing results
+                if (roadmap) roadmap.style.display = 'none';
+                // ensure results use the compact search styling
+                results.classList.add('search-results');
 
                 if (searchResults.length > 0) {
                     // 3. Draw the new results
-                    searchResults.slice(0, 5).forEach(result => {
+                    searchResults.slice(0, 12).forEach(result => {
                         const item = result.item;
-                        const li = document.createElement('li');
-                        li.innerHTML = `<a href="${item.permalink}">${item.title}</a>`;
-                        results.appendChild(li);
+                        const a = document.createElement('a');
+                        a.className = 'roadmap-card';
+                        const num = item.weight || item.Weight || '';
+                        const title = item.title || item.Title || item.name || '';
+                        a.href = item.permalink || '#';
+                        a.innerHTML = `<span class="roadmap-no">${num}</span><span class="roadmap-label">${title}</span>`;
+                        results.appendChild(a);
                     });
                     results.style.display = 'block';
                 } else {
                     // No matches found
-                    results.innerHTML = '<li style="padding:1rem; opacity:0.5;">No labs found...</li>';
+                    results.innerHTML = '<div style="padding:1rem; opacity:0.5;">No labs found...</div>';
                     results.style.display = 'block';
                 }
             } else {
                 // 4. Search is empty: Reset the view
                 results.style.display = 'none';
-                roadmap.style.opacity = '1';
-                roadmap.style.pointerEvents = 'auto';
+                results.classList.remove('search-results');
+                if (roadmap) roadmap.style.display = '';
+            }
+        });
+
+        // Hide roadmap immediately when input gains focus
+        input.addEventListener('focus', () => {
+            if (roadmap) roadmap.style.display = 'none';
+        });
+
+        // Restore roadmap when clicking outside the searchbox
+        document.addEventListener('click', (e) => {
+            if (!searchbox.contains(e.target)) {
+                results.style.display = 'none';
+                results.classList.remove('search-results');
+                if (roadmap) roadmap.style.display = '';
+            }
+        });
+
+        // Allow Escape to clear search and restore roadmap
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                input.value = '';
+                results.style.display = 'none';
+                results.classList.remove('search-results');
+                if (roadmap) roadmap.style.display = '';
             }
         });
     } catch (err) {

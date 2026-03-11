@@ -6,7 +6,7 @@
 
         <div id="searchbox">
             <input id="searchInput" autofocus placeholder="Search Terraform labs..." type="search" autocomplete="off">
-            <ul id="searchResults" style="display: none;"></ul>
+            <div id="searchResults" class="search-results" style="display: none;"></div>
         </div>
 
         <div class="buttons">
@@ -35,7 +35,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
-<script defer src="{{ "js/search.js" | relURL }}"></script>
 <script>
     window.searchIndex = '{{ "index.json" | relURL }}';
 </script>
+<script defer src="{{ "js/search.js" | relURL }}"></script>
