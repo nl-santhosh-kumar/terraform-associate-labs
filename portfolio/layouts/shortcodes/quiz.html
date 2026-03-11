@@ -1,0 +1,111 @@
+{{- $quizData := .Page.Params.quiz -}}
+
+<div id="quiz-container" class="quiz-box">
+    {{- if not $quizData -}}
+        <p style="color: #e74c3c;">⚠️ Quiz data not found in Front Matter.</p>
+    {{- else -}}
+        <div id="quiz-app" data-quiz='{{ $quizData | jsonify }}'>
+            <div id="quiz-header" style="display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 0.8em; opacity: 0.7;">
+                <span id="q-progress"></span>
+                <span id="q-score">Score: 0</span>
+            </div>
+            <div id="q-body"></div>
+            <div id="q-feedback" style="margin-top: 15px; font-weight: bold; min-height: 24px;"></div>
+            <button id="next-btn" style="display:none; margin-top: 15px; width: 100%; padding: 10px; background: var(--primary); color: var(--theme); border: none; border-radius: 5px; cursor: pointer;">Next Question</button>
+        </div>
+    {{- end -}}
+</div>
+
+<script>
+(function() {
+    const app = document.getElementById('quiz-app');
+    if (!app) return;
+
+    const questions = JSON.parse(app.getAttribute('data-quiz'));
+    const qBody = document.getElementById('q-body');
+    const feedback = document.getElementById('q-feedback');
+    const nextBtn = document.getElementById('next-btn');
+    const progressText = document.getElementById('q-progress');
+    const scoreText = document.getElementById('q-score');
+
+    let current = 0;
+    let score = 0;
+
+    function renderQuestion() {
+        const q = questions[current];
+        feedback.innerText = "";
+        nextBtn.style.display = "none";
+        progressText.innerText = `Question ${current + 1} of ${questions.length}`;
+        
+        qBody.innerHTML = `
+            <p style="margin-bottom: 15px;"><strong>${q.question}</strong></p>
+            <div class="opts-grid" style="display: grid; gap: 8px;">
+                ${q.options.map(o => `<button class="q-opt">${o}</button>`).join('')}
+            </div>
+        `;
+
+        qBody.querySelectorAll('.q-opt').forEach(btn => {
+            btn.onclick = () => {
+                // Check if button text starts with the answer letter (e.g., "B")
+                const isCorrect = btn.innerText.trim().toUpperCase().startsWith(q.answer.toUpperCase());
+                
+                // Lock all buttons
+                qBody.querySelectorAll('.q-opt').forEach(b => {
+                    b.disabled = true;
+                    b.style.opacity = "0.6";
+                });
+
+                btn.style.opacity = "1";
+                if (isCorrect) {
+                    btn.style.background = "#2ecc71";
+                    btn.style.color = "white";
+                    feedback.innerText = "✨ Correct!";
+                    feedback.style.color = "#2ecc71";
+                    score++;
+                    scoreText.innerText = `Score: ${score}`;
+                } else {
+                    btn.style.background = "#e74c3c";
+                    btn.style.color = "white";
+                    feedback.innerHTML = `❌ Incorrect. The answer was <strong>${q.answer}</strong>`;
+                    feedback.style.color = "#e74c3c";
+                }
+
+                nextBtn.style.display = "block";
+                if (current === questions.length - 1) {
+                    nextBtn.innerText = "Show Final Results";
+                }
+            };
+        });
+    }
+
+    nextBtn.onclick = () => {
+        current++;
+        if (current < questions.length) {
+            renderQuestion();
+        } else {
+            showFinal();
+        }
+    };
+
+    function showFinal() {
+        document.getElementById('quiz-header').style.display = "none";
+        qBody.innerHTML = `
+            <div style="text-align: center; padding: 20px;">
+                <h3 style="font-size: 2em;">${score} / ${questions.length}</h3>
+                <p>Quiz Completed!</p>
+                <button onclick="location.reload()" style="background:none; border: 1px solid var(--primary); color: var(--primary); padding: 5px 15px; border-radius: 4px; cursor: pointer; margin-top: 10px;">Retry</button>
+            </div>
+        `;
+        feedback.innerText = "";
+        nextBtn.style.display = "none";
+    }
+
+    renderQuestion();
+})();
+</script>
+
+<style>
+    .quiz-box { background: var(--tertiary); padding: 25px; border-radius: 12px; border: 1px solid var(--border); margin: 30px 0; }
+    .q-opt { display: block; width: 100%; text-align: left; padding: 12px; background: var(--theme); color: var(--content); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: 0.2s; }
+    .q-opt:hover:not([disabled]) { border-color: var(--primary); }
+</style>

@@ -5,6 +5,17 @@ tags: ["Terraform", "Security", "Lab"]
 weight: 30
 showToc: true
 summary: "Moving away from hardcoded values to dynamic, variable-driven configurations."
+date: 2026-03-11
+quiz:
+  - question: "Which notation path do you use?"
+    options: ["A) random_pet.id", "B) random_pet.my-pet.id"]
+    answer: "B"
+  - question: "What is the Terraform command to start a project?"
+    options: ["A) terraform plan", "B) terraform init", "C) terraform apply"]
+    answer: "B"
+  - question: "Is Terraform state stored in a .tf file?"
+    options: ["A) Yes", "B) No"]
+    answer: "B"
 ---
 
 ## 🧠 The Concept: Input vs. Output
@@ -74,7 +85,7 @@ You likely used an output that exported the entire resource object. While useful
 
    - /* of string */: This is a hint that if you did provide values, they would need to be strings.
 
-##4. Refining the Output
+## 4. Refining the Output
 When you run terraform apply then you will see:
 ```
 my-random-pet-name = {
@@ -92,39 +103,7 @@ my-random-pet-name = {
 
 Test your understanding of Terraform State and Outputs before moving to the next lesson.
 
-### Question 1
-In the output below, which **dot-notation** path would you use to get *only* the name of the pet?
-`my-random-pet-name = { "id" = "Mrs.awaited.bullfrog", ... }`
-
-**A)** `random_pet.my-pet`  
-**B)** `random_pet.my-pet.id`  
-**C)** `random_pet.id.my-pet`
-
----
-
-### Question 2
-What does `tomap(null) /* of string */` in a Terraform output signify?
-**A)** A critical error in the configuration.  
-**B)** The pet was not created successfully.  
-**C)** An optional map attribute that has no value assigned.
-
----
-
-### Question 3
-Why is the `serial` number in your `terraform.tfstate` file currently set to `1`?
-**A)** It is the first time the state has been created/updated.  
-**B)** You are using Terraform version 1.0.  
-**C)** You only have one resource in your file.
-
----
-
-<details>
-<summary><b>Check the Answers</b></summary>
-
-1. **B** – You always go `Resource.Name.Attribute`.
-2. **C** – It's just Terraform's way of showing an empty data structure.
-3. **A** – The serial increments every time the state is modified.
-</details>
+{{< quiz >}}
 
 
 ## 📚 004 Exam: Official Documentation Reference
