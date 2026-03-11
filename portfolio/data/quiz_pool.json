@@ -1,0 +1,14 @@
+[
+  {
+    "question": "What is the command to view the current state file?",
+    "options": ["A) terraform state list", "B) terraform show", "C) terraform plan"],
+    "answer": "B",
+    "explanation": "The 'terraform show' command provides a human-readable version of the state."
+  },
+  {
+    "question": "Which file is created after running 'terraform init'?",
+    "options": ["A) .terraform.lock.hcl", "B) terraform.tfstate", "C) main.tf"],
+    "answer": "A",
+    "explanation": "The dependency lock file ensures provider versions remain consistent."
+  }
+]

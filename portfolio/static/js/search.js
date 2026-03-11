@@ -15,14 +15,9 @@ async function initSearch() {
     const buttonContainer = document.querySelector(".button-container");
 
     document.getElementById("lucky-btn").addEventListener("click", async () => {
-      const res = await fetch(window.searchIndex);
-      const data = await res.json();
-
-      if (data.length > 0) {
-        // Pick a random index
-        const randomLab = data[Math.floor(Math.random() * data.length)];
-        window.location.href = randomLab.permalink;
-      }
+        const currentPath = window.location.pathname;
+        const newPath = currentPath.endsWith('/') ? currentPath + 'quiz/' : currentPath + '/quiz/';
+        window.location.href = newPath;
     });
 
     input.addEventListener("input", () => {

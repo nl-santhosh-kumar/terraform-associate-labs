@@ -54,6 +54,10 @@ paginate = 5  # Shows 5 challenges per page
         name = "About"
         url = "/about/"
         weight = 20
+    [[menus.main]]
+        name = "Terraform Quiz"
+        url = "/quiz/"
+        weight = 5
 
 [security]
   [security.funcs]

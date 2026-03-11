@@ -1,0 +1,130 @@
+{{- define "main" -}}
+<div class="post-single">
+    <h1 class="post-title">{{ .Title }}</h1>
+
+    {{/* 1. Fetch the data from the JSON file */}}
+    {{- $questions := site.Data.quiz_pool -}}
+    {{- $count := len $questions -}}
+
+    <div id="quiz-engine" class="quiz-box" data-questions='{{ $questions | jsonify }}'>
+        <div id="setup-screen">
+            <p>Total Questions in Bank: <strong>{{ $count }}</strong></p>
+            <div class="btn-group">
+                <button onclick="startQuiz(10)" class="btn">Quick 10</button>
+                {{/* Use the $count variable here directly */}}
+                <button onclick="startQuiz()" class="btn">All Questions</button>
+            </div>
+        </div>
+        
+        <div id="quiz-ui" style="display:none;">
+            <div id="q-header" style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                <span id="q-progress"></span>
+                <span id="q-score">Score: 0</span>
+            </div>
+            <div id="q-body"></div>
+            <div id="q-feedback" style="margin: 15px 0; font-weight: bold; min-height: 20px;"></div>
+            <button id="next-btn" style="display:none; width: 100%; padding: 12px; background: var(--primary); color: var(--theme); border: none; border-radius: 6px; cursor: pointer;">Next Question</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Grab the data from the HTML attribute immediately
+    const rawData = document.getElementById('quiz-engine').getAttribute('data-questions');
+    const allQuestionsPool = JSON.parse(rawData);
+
+    let sessionQuestions = [];
+    let currentIdx = 0;
+    let score = 0;
+
+    function startQuiz(count) {
+        // Ensure we don't try to pull more questions than we actually have
+        const finalCount = Math.min(count, allQuestionsPool.length);
+        
+        // SHUFFLE: Fisher-Yates shuffle for true randomness
+        sessionQuestions = [...allQuestionsPool]
+            .sort(() => 0.5 - Math.random())
+            .slice(0, finalCount);
+        
+        document.getElementById('setup-screen').style.display = 'none';
+        document.getElementById('quiz-ui').style.display = 'block';
+        renderQuestion();
+    }
+
+    function renderQuestion() {
+        const q = sessionQuestions[currentIdx];
+        const feedback = document.getElementById('q-feedback');
+        const nextBtn = document.getElementById('next-btn');
+        
+        feedback.innerText = "";
+        nextBtn.style.display = "none";
+        document.getElementById('q-progress').innerText = `Question ${currentIdx + 1} of ${sessionQuestions.length}`;
+        
+        const qBody = document.getElementById('q-body');
+        qBody.innerHTML = `
+            <p style="font-size: 1.2em; margin-bottom: 20px;"><strong>${q.question}</strong></p>
+            <div style="display: grid; gap: 10px;">
+                ${q.options.map(o => `<button class="opt-btn">${o}</button>`).join('')}
+            </div>
+        `;
+
+        qBody.querySelectorAll('.opt-btn').forEach(btn => {
+            btn.onclick = () => {
+                const isCorrect = btn.innerText.trim().toUpperCase().startsWith(q.answer.toUpperCase());
+                
+                // Disable all buttons
+                qBody.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+
+                if (isCorrect) {
+                    btn.style.background = "#2ecc71";
+                    btn.style.color = "white";
+                    score++;
+                    feedback.innerText = "✓ Correct!";
+                    feedback.style.color = "#2ecc71";
+                } else {
+                    btn.style.background = "#e74c3c";
+                    btn.style.color = "white";
+                    feedback.innerText = `✗ Incorrect. Answer: ${q.answer}`;
+                    feedback.style.color = "#e74c3c";
+                }
+
+                document.getElementById('q-score').innerText = `Score: ${score}`;
+                nextBtn.style.display = "block";
+                if (currentIdx === sessionQuestions.length - 1) {
+                    nextBtn.innerText = "Show Results";
+                }
+            };
+        });
+    }
+
+    document.getElementById('next-btn').onclick = () => {
+        currentIdx++;
+        if (currentIdx < sessionQuestions.length) {
+            renderQuestion();
+        } else {
+            showResults();
+        }
+    };
+
+    function showResults() {
+        document.getElementById('q-header').style.display = "none";
+        document.getElementById('q-body').innerHTML = `
+            <div style="text-align: center; padding: 20px;">
+                <h2>Quiz Complete!</h2>
+                <h3 style="font-size: 2.5em; margin: 10px 0;">${score} / ${sessionQuestions.length}</h3>
+                <button onclick="location.reload()" class="btn" style="margin-top: 20px;">Try Again</button>
+            </div>
+        `;
+        document.getElementById('q-feedback').innerText = "";
+        document.getElementById('next-btn').style.display = "none";
+    }
+</script>
+
+<style>
+    .quiz-box { background: var(--tertiary); padding: 30px; border-radius: 12px; border: 1px solid var(--border); }
+    .btn-group { display: flex; gap: 10px; margin-top: 20px; }
+    .btn { padding: 10px 20px; background: var(--primary); color: var(--theme); border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    .opt-btn { text-align: left; padding: 12px; background: var(--theme); color: var(--content); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: 0.2s; }
+    .opt-btn:hover:not([disabled]) { border-color: var(--primary); }
+</style>
+{{- end -}}
