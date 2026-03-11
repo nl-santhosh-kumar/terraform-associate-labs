@@ -12,6 +12,7 @@ async function initSearch() {
     const fuse = new Fuse(data, options);
     const input = document.getElementById("searchInput");
     const results = document.getElementById("customResults");
+    const buttonContainer = document.querySelector(".button-container");
 
     document.getElementById("lucky-btn").addEventListener("click", async () => {
       const res = await fetch(window.searchIndex);
@@ -33,6 +34,8 @@ async function initSearch() {
         // 2. Clear previous results and hide roadmap
         results.innerHTML = "";
 
+        // hide the buttons when showing search results
+        buttonContainer.style.display = "none";
         // ensure results use the compact search styling 
         results.classList.add("search-results");
         if (searchResults.length > 0) {
@@ -58,6 +61,7 @@ async function initSearch() {
         // 4. Search is empty: Reset the view
         results.style.display = "none";
         results.classList.remove("search-results");
+         buttonContainer.style.display = "block";
       }
     });
 
