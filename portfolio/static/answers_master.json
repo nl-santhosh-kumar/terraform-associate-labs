@@ -139,104 +139,29 @@
     "a": "B",
     "e": "Using '-out=path' creates a binary file that ensures the 'apply' does exactly what the 'plan' showed, with no surprises."
   },
-  "tf-086": {
-    "a": "B",
-    "e": "remote-exec connects to the newly created resource to run scripts. It requires a connection block (SSH for Linux, WinRM for Windows)."
-  },
-  "tf-087": {
-    "a": "B",
-    "e": "If a provisioner fails, the resource is marked 'tainted' because Terraform cannot guarantee it is fully functional. It will be replaced on the next apply."
-  },
-  "tf-088": {
-    "a": "C",
-    "e": "The validation block (inside a variable) contains a 'condition' (boolean) and an 'error_message' to provide feedback if the input is invalid."
-  },
-  "tf-089": {
-    "a": "B",
-    "e": "Data sources are 'read-only' operations that allow your configuration to use info from external resources (like an existing AWS VPC ID)."
-  },
-  "tf-090": {
-    "a": "A",
-    "e": "prevent_destroy is a lifecycle meta-argument. If someone tries to destroy a resource with this set to true, Terraform will error out."
-  },
-  "tf-091": {
-    "a": "C",
-    "e": "The ~ (tilde) symbol in a plan indicates an 'update-in-place,' meaning only certain attributes change without destroying the resource."
-  },
-  "tf-092": {
-    "a": "C",
-    "e": "If no version is specified, Terraform defaults to the latest version. This is risky for production as new versions might introduce breaking changes."
-  },
-  "tf-093": {
-    "a": "B",
-    "e": "lookup(map, key, default) retrieves a value from a map. If the key is missing, it returns the provided default instead of erroring."
-  },
-  "tf-094": {
-    "a": "B",
-    "e": "Terraform automatically loads files ending in .auto.tfvars or .auto.tfvars.json from the current directory without needing -var-file."
-  },
-  "tf-095": {
-    "a": "B",
-    "e": "terraform show is the primary tool for inspecting the current state file or a specific plan file in a readable format."
-  },
-  "tf-096": {
-    "a": "C",
-    "e": "The 'inline' argument takes a list of strings, each representing a command to be executed in order on the remote system."
-  },
-  "tf-097": {
-    "a": "B",
-    "e": "terraform_data is a built-in resource (no provider needed) used for lifecycle management and storing data that triggers other actions."
-  },
-  "tf-098": {
-    "a": "B",
-    "e": "TFC Workspaces are the fundamental unit of isolation, allowing different environments (Dev, Prod) to use the same HCL with different state."
-  },
-  "tf-099": {
-    "a": "A",
-    "e": "terraform state mv is used to rename resources in the state or move them between different state files without destroying them."
-  },
-  "tf-100": {
-    "a": "B",
-    "e": "The dependency lock file (.terraform.lock.hcl) records provider versions and hashes to ensure consistency across different environments."
-  },
-  "tf-101": {
-    "a": "C",
-    "e": "If you name your dynamic block 'setting', then the current element is accessed via 'setting.value' unless you define a custom 'iterator'."
-  },
-  "tf-102": {
-    "a": "B",
-    "e": "terraform validate is a local check for syntax and internal logic. It does not need to talk to AWS, Azure, or your backend."
-  },
-  "tf-103": {
-    "a": "C",
-    "e": "In automated environments, -input=false ensures the process fails if a variable is missing rather than hanging indefinitely waiting for a human to type a value."
-  },
-  "tf-104": {
-    "a": "B",
-    "e": "Policy Sets (Sentinel or OPA) are Organization-level constructs that can be mapped to one or all workspaces."
-  },
-  "tf-105": {
-    "a": "A",
-    "e": "coalesce() returns the first non-null value. Since \"\" (empty string) is NOT null, it is returned."
-  },
-  "tf-106": {
-    "a": "B",
-    "e": "An alias allows you to define 'aws.west' and 'aws.east'. You then reference them in resources using 'provider = aws.west'."
-  },
-  "tf-107": {
-    "a": "C",
-    "e": "terraform output reads purely from the existing state file on disk/backend without checking the real infrastructure."
-  },
-  "tf-108": {
-    "a": "B",
-    "e": "one() is helpful when dealing with modules that might return an optional single-item list, simplifying the reference to just 'null' or the 'value'."
-  },
-  "tf-109": {
-    "a": "D",
-    "e": "Speculative plans are triggered by PRs/MRs, allowing teams to see the impact of changes in the UI before merging."
-  },
-  "tf-110": {
-    "a": "A",
-    "e": "TF_CLI_CONFIG_FILE points Terraform to your .terraformrc (Unix) or terraform.rc (Windows) file."
-  }
+  "tf-086": { "a": "B", "e": "remote-exec connects to the newly created resource to run scripts. It requires a connection block (SSH for Linux, WinRM for Windows)." },
+  "tf-087": { "a": "B", "e": "If a provisioner fails, the resource is marked 'tainted' because Terraform cannot guarantee it is fully functional. It will be replaced on the next apply." },
+  "tf-088": { "a": "C", "e": "The validation block (inside a variable) contains a 'condition' (boolean) and an 'error_message' to provide feedback if the input is invalid." },
+  "tf-089": { "a": "B", "e": "Data sources are 'read-only' operations that allow your configuration to use info from external resources (like an existing AWS VPC ID)." },
+  "tf-090": { "a": "A", "e": "prevent_destroy is a lifecycle meta-argument. If someone tries to destroy a resource with this set to true, Terraform will error out." },
+  "tf-091": { "a": "C", "e": "The ~ (tilde) symbol in a plan indicates an 'update-in-place,' meaning only certain attributes change without destroying the resource." },
+  "tf-092": { "a": "C", "e": "If no version is specified, Terraform defaults to the latest version. This is risky for production as new versions might introduce breaking changes." },
+  "tf-093": { "a": "B", "e": "lookup(map, key, default) retrieves a value from a map. If the key is missing, it returns the provided default instead of erroring." },
+  "tf-094": { "a": "B", "e": "Terraform automatically loads files ending in .auto.tfvars or .auto.tfvars.json from the current directory without needing -var-file." },
+  "tf-095": { "a": "B", "e": "terraform show is the primary tool for inspecting the current state file or a specific plan file in a readable format." },
+  "tf-096": { "a": "C", "e": "The 'inline' argument takes a list of strings, each representing a command to be executed in order on the remote system." },
+  "tf-097": { "a": "B", "e": "terraform_data is a built-in resource (no provider needed) used for lifecycle management and storing data that triggers other actions." },
+  "tf-098": { "a": "B", "e": "TFC Workspaces are the fundamental unit of isolation, allowing different environments (Dev, Prod) to use the same HCL with different state." },
+  "tf-099": { "a": "A", "e": "terraform state mv is used to rename resources in the state or move them between different state files without destroying them." },
+  "tf-100": { "a": "B", "e": "The dependency lock file (.terraform.lock.hcl) records provider versions and hashes to ensure consistency across different environments." }
+,"tf-101": { "a": "C", "e": "If you name your dynamic block 'setting', then the current element is accessed via 'setting.value' unless you define a custom 'iterator'." },
+  "tf-102": { "a": "B", "e": "terraform validate is a local check for syntax and internal logic. It does not need to talk to AWS, Azure, or your backend." },
+  "tf-103": { "a": "C", "e": "In automated environments, -input=false ensures the process fails if a variable is missing rather than hanging indefinitely waiting for a human to type a value." },
+  "tf-104": { "a": "B", "e": "Policy Sets (Sentinel or OPA) are Organization-level constructs that can be mapped to one or all workspaces." },
+  "tf-105": { "a": "A", "e": "coalesce() returns the first non-null value. Since \"\" (empty string) is NOT null, it is returned." },
+  "tf-106": { "a": "B", "e": "An alias allows you to define 'aws.west' and 'aws.east'. You then reference them in resources using 'provider = aws.west'." },
+  "tf-107": { "a": "C", "e": "terraform output reads purely from the existing state file on disk/backend without checking the real infrastructure." },
+  "tf-108": { "a": "B", "e": "one() is helpful when dealing with modules that might return an optional single-item list, simplifying the reference to just 'null' or the 'value'." },
+  "tf-109": { "a": "D", "e": "Speculative plans are triggered by PRs/MRs, allowing teams to see the impact of changes in the UI before merging." },
+  "tf-110": { "a": "A", "e": "TF_CLI_CONFIG_FILE points Terraform to your .terraformrc (Unix) or terraform.rc (Windows) file." }
 }
