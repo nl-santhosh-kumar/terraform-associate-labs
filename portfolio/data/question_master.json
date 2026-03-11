@@ -1,12 +1,532 @@
 [
   {
-    "id": "tf-001",
-    "question": "What is the command to view the current state file?",
-    "options": ["A) terraform state list", "B) terraform show", "C) terraform plan"]
+    "id": "tf-014",
+    "category": "HCL-Advanced",
+    "question": "You are refactoring code and want to move a resource named 'aws_instance.web' into a module named 'compute'. What is the best practice to do this without destroying the resource?",
+    "options": [
+      "A) Manually edit the terraform.tfstate file.",
+      "B) Use a 'moved' block in your configuration.",
+      "C) Run 'terraform state rm' and then 'terraform import'.",
+      "D) Use 'terraform taint' on the resource."
+    ]
   },
   {
-    "id": "tf-002",
-    "question": "Which file is created after running 'terraform init'?",
-    "options": ["A) .terraform.lock.hcl", "B) terraform.tfstate", "C) main.tf"]
+    "id": "tf-015",
+    "category": "HCL-Advanced",
+    "question": "Terraform 1.8 introduced 'Provider-defined functions'. Where are these functions executed?",
+    "options": [
+      "A) On the local machine running the Terraform CLI.",
+      "B) Inside the Terraform Cloud runner only.",
+      "C) By the provider plugin itself (e.g., the AWS provider).",
+      "D) Within the HashiCorp Sentinel engine."
+    ]
+  },
+  {
+    "id": "tf-016",
+    "category": "Workflow",
+    "question": "When using 'terraform test', what is the primary purpose of the 'run' block?",
+    "options": [
+      "A) To execute an external shell script.",
+      "B) To define a specific test operation, including an optional plan or apply.",
+      "C) To bypass the 'init' phase of a test.",
+      "D) To define the order of provider installation."
+    ]
+  },
+  {
+    "id": "tf-017",
+    "category": "State",
+    "question": "You have a variable defined as sensitive = true. Where will this value still be visible in plain text?",
+    "options": [
+      "A) In the 'terraform plan' output.",
+      "B) In the 'terraform.tfstate' file.",
+      "C) In the CLI output of 'terraform apply'.",
+      "D) In the Terraform Cloud UI logs."
+    ]
+  },
+  {
+    "id": "tf-018",
+    "category": "Workflow",
+    "question": "A provider has released a new version that includes a breaking change. You want to ensure your configuration only uses version 5.0.0. What is the correct constraint?",
+    "options": [
+      "A) version = '5.0.0'",
+      "B) version = '>= 5.0.0'",
+      "C) version = '~> 5.0.0'",
+      "D) version = '!= 5.0.0'"
+    ]
+  },
+  {
+    "id": "tf-019",
+    "question": "Which block type, introduced for continuous validation, allows you to define functional assertions that don't stop a 'terraform apply'?",
+    "options": [
+      "A) resource",
+      "B) check",
+      "C) precondition",
+      "D) postcondition"
+    ]
+  },
+  {
+    "id": "tf-020",
+    "question": "What happens if a 'postcondition' assertion fails during a 'terraform apply'?",
+    "options": [
+      "A) Terraform skips that resource and continues.",
+      "B) Terraform completes the apply but shows a warning.",
+      "C) Terraform halts execution and marks the resource as tainted (or fails the apply).",
+      "D) Terraform automatically rolls back the entire state."
+    ]
+  },
+  {
+    "id": "tf-021",
+    "question": "When using the 'optional()' type constraint for a module variable, what is the default value if the user doesn't provide one and no default is specified?",
+    "options": ["A) null", "B) 0", "C) empty string", "D) An error is thrown"]
+  },
+  {
+    "id": "tf-022",
+    "question": "You want to test a module without creating real infrastructure. Which 'terraform test' feature allows you to simulate provider responses?",
+    "options": ["A) Mocks", "B) Dry-run", "C) Variables", "0) Outputs"]
+  },
+  {
+    "id": "tf-023",
+    "question": "What is the correct way to reference a specific instance of a resource created with 'for_each' in a different resource?",
+    "options": [
+      "A) aws_instance.web[0]",
+      "B) aws_instance.web.all",
+      "C) aws_instance.web[\"key_name\"]",
+      "D) aws_instance.web.key_name"
+    ]
+  },
+  {
+    "id": "tf-024",
+    "question": "Which command is used to retrieve the current state from a remote backend and output it to stdout?",
+    "options": [
+      "A) terraform state pull",
+      "B) terraform state push",
+      "C) terraform show -json",
+      "D) terraform output -state"
+    ]
+  },
+  {
+    "id": "tf-025",
+    "question": "In Terraform 004 logic, what is the primary benefit of 'Ephemeral Resources'?",
+    "options": [
+      "A) They are never stored in the state file.",
+      "B) They are created and destroyed automatically within a single operation for tasks like temporary credentials.",
+      "C) They stay active for only 24 hours.",
+      "D) They are used to manage local files only."
+    ]
+  },
+  {
+    "id": "tf-026",
+    "question": "What is the purpose of the 'terraform login' command?",
+    "options": [
+      "A) To log into your AWS/Azure Console.",
+      "B) To authenticate the CLI with Terraform Cloud or Enterprise.",
+      "C) To initialize a new workspace.",
+      "D) To unlock a local state file."
+    ]
+  },
+  {
+    "id": "tf-027",
+    "question": "You need to export a value from a child module so the root module can use it. Which block do you use?",
+    "options": ["A) variable", "B) resource", "C) local", "D) output"]
+  },
+  {
+    "id": "tf-028",
+    "question": "Which environment variable can be used to set the log level (trace, debug, info, warn, error) for Terraform?",
+    "options": [
+      "A) TF_LOG",
+      "B) TERRAFORM_DEBUG",
+      "C) TF_VAR_log",
+      "D) TF_CLI_ARGS"
+    ]
+  },
+  {
+    "id": "tf-051",
+    "category": "Modules",
+    "question": "Which module source address prefix is used to pull a module from the public Terraform Registry?",
+    "options": [
+      "A) registry://",
+      "B) github.com/",
+      "C) No prefix required (Namespace/Name/Provider)",
+      "D) ./modules/"
+    ]
+  },
+  {
+    "id": "tf-052",
+    "category": "Modules",
+    "question": "You want to use a module stored in a private Git repository and specify a specific tag 'v1.2.0'. What is the correct suffix for the source string?",
+    "options": ["A) ?tag=v1.2.0", "B) ?ref=v1.2.0", "C) @v1.2.0", "D) :v1.2.0"]
+  },
+  {
+    "id": "tf-053",
+    "category": "State",
+    "question": "What happens to your local state file if you configure a 'remote' backend and run 'terraform init'?",
+    "options": [
+      "A) It is deleted immediately.",
+      "B) Terraform asks to migrate the existing state to the remote backend.",
+      "C) Both local and remote states are kept in sync.",
+      "D) The remote backend overwrites the local state without warning."
+    ]
+  },
+  {
+    "id": "tf-054",
+    "category": "CLI",
+    "question": "Which command allows you to see the values of the 'output' variables without running a full 'terraform plan'?",
+    "options": [
+      "A) terraform show outputs",
+      "B) terraform output",
+      "C) terraform state show",
+      "D) terraform get"
+    ]
+  },
+  {
+    "id": "tf-055",
+    "category": "HCL-Advanced",
+    "question": "What is the purpose of the 'terraform_remote_state' data source?",
+    "options": [
+      "A) To upload your current state to a cloud bucket.",
+      "B) To use output values from a completely separate Terraform configuration's state file.",
+      "C) To backup the local state file to a remote location.",
+      "D) To restore a corrupted state file."
+    ]
+  },
+  {
+    "id": "tf-071",
+    "category": "Workflow",
+    "question": "Which of the following has the HIGHEST precedence when Terraform evaluates variables?",
+    "options": [
+      "A) Environment variables (TF_VAR_x)",
+      "B) terraform.tfvars file",
+      "C) -var or -var-file flags on the CLI",
+      "D) Default values in the variable block"
+    ]
+  },
+  {
+    "id": "tf-072",
+    "category": "Workflow",
+    "question": "You want to run a script on your local machine after a resource is created. Which provisioner do you use?",
+    "options": [
+      "A) remote-exec",
+      "B) local-exec",
+      "C) ansible-exec",
+      "D) shell-exec"
+    ]
+  },
+  {
+    "id": "tf-073",
+    "category": "HCL-Advanced",
+    "question": "What is the purpose of the 'can()' function in Terraform?",
+    "options": [
+      "A) To delete a resource if it exists.",
+      "B) To evaluate an expression and return a boolean if it succeeds without error.",
+      "C) To convert a string to a list.",
+      "D) To check if a provider is logged in."
+    ]
+  },
+  {
+    "id": "tf-074",
+    "category": "Cloud-Enterprise",
+    "question": "In Terraform Cloud, what is a 'Variable Set'?",
+    "options": [
+      "A) A list of variables that only apply to one resource.",
+      "B) A reusable collection of variables that can be applied to multiple workspaces.",
+      "C) A way to encrypt the terraform.tfstate file.",
+      "D) A replacement for the providers block."
+    ]
+  },
+  {
+    "id": "tf-075",
+    "category": "CLI",
+    "question": "Which command is the best way to safely remove all infrastructure managed by a specific configuration?",
+    "options": [
+      "A) rm terraform.tfstate",
+      "B) terraform state rm *",
+      "C) terraform destroy",
+      "D) terraform apply -delete"
+    ]
+  },
+  {
+    "id": "tf-076",
+    "category": "HCL-Advanced",
+    "question": "What is the difference between an 'implicit' and an 'explicit' dependency?",
+    "options": [
+      "A) Implicit is defined by 'depends_on'; Explicit is found automatically by Terraform.",
+      "B) Implicit is found automatically via reference; Explicit is defined via the 'depends_on' argument.",
+      "C) Implicit dependencies only work with modules.",
+      "D) There is no difference in how Terraform handles them."
+    ]
+  },
+  {
+    "id": "tf-077",
+    "category": "HCL-Advanced",
+    "question": "Which function would you use to merge two or more maps into a single map?",
+    "options": ["A) concat()", "B) merge()", "C) lookup()", "D) zipmap()"]
+  },
+  {
+    "id": "tf-078",
+    "category": "Workflow",
+    "question": "You want to use a specific version of a provider. Where should you define the 'required_providers' block?",
+    "options": ["A) Inside the resource block.", "B) Inside the provider block.", "C) Inside the terraform block.", "D) In a separate .tfvars file."]
+  },
+  {
+    "id": "tf-079",
+    "category": "CLI",
+    "question": "What does the command 'terraform validate' actually check?",
+    "options": [
+      "A) If the cloud credentials are correct.",
+      "B) If the remote state is locked.",
+      "C) Syntax, internal consistency, and attribute names/types.",
+      "D) If the resources already exist in the cloud."
+    ]
+  },
+  {
+    "id": "tf-080",
+    "category": "Modules",
+    "question": "When using a module from the Terraform Registry, what does the 'verified' blue checkmark represent?",
+    "options": [
+      "A) The module is bug-free.",
+      "B) The module is maintained by a HashiCorp technology partner.",
+      "C) The module is the most popular in the registry.",
+      "D) The module has passed a security audit by HashiCorp."
+    ]
+  },
+  {
+    "id": "tf-081",
+    "category": "State",
+    "question": "Which command is used to change the backend of an existing project (e.g., from local to S3)?",
+    "options": ["A) terraform apply", "B) terraform init -migrate-state", "C) terraform push", "D) terraform state mv"]
+  },
+  {
+    "id": "tf-082",
+    "category": "HCL-Advanced",
+    "question": "What is the purpose of 'locals' in a Terraform configuration?",
+    "options": [
+      "A) To define variables that the user must input.",
+      "B) To store sensitive secrets safely.",
+      "C) To define temporary names for expressions to avoid repetition (Don't Repeat Yourself).",
+      "D) To limit resource creation to the local machine."
+    ]
+  },
+  {
+    "id": "tf-083",
+    "category": "Cloud-Enterprise",
+    "question": "In Terraform Cloud, what is a 'Run Trigger'?",
+    "options": [
+      "A) A way to start a plan in one workspace when another workspace successfully applies.",
+      "B) A specific HCL block that fires an API call.",
+      "C) A manual button to start a destroy.",
+      "D) A Sentinel policy that forces a run."
+    ]
+  },
+  {
+    "id": "tf-084",
+    "category": "Workflow",
+    "question": "What is the purpose of the '.terraform' directory in your project?",
+    "options": [
+      "A) It stores your main configuration code.",
+      "B) It stores cached providers, modules, and backend metadata.",
+      "C) It is the default location for state backups.",
+      "D) It is a required folder for all .tfvars files."
+    ]
+  },
+  {
+    "id": "tf-085",
+    "category": "CLI",
+    "question": "Which flag would you add to 'terraform plan' to save the generated plan to a file for later use in an apply?",
+    "options": ["A) -save", "B) -out", "C) -export", "D) -file"]
+  },
+  {
+    "id": "tf-086",
+    "category": "Workflow",
+    "question": "Which provisioner block is used to execute a script on a remote resource via SSH or WinRM?",
+    "options": ["A) local-exec", "B) remote-exec", "C) cloud-init", "D) salt-master"]
+  },
+  {
+    "id": "tf-087",
+    "category": "Workflow",
+    "question": "If a provisioner fails during a 'terraform apply', what happens to the resource by default?",
+    "options": [
+      "A) Terraform rolls back the creation.",
+      "B) The resource is marked as 'tainted'.",
+      "C) Terraform ignores the error and continues.",
+      "D) The state file is deleted."
+    ]
+  },
+  {
+    "id": "tf-088",
+    "category": "HCL-Advanced",
+    "question": "Which block inside a variable definition is used to custom-validate the input value using a boolean expression?",
+    "options": ["A) check", "B) condition", "C) validation", "D) assert"]
+  },
+  {
+    "id": "tf-089",
+    "category": "Workflow",
+    "question": "What is the primary purpose of a 'Data Source' in Terraform?",
+    "options": [
+      "A) To create new infrastructure.",
+      "B) To fetch information from infrastructure defined outside of Terraform or by another configuration.",
+      "C) To store sensitive passwords in plain text.",
+      "D) To define the provider version."
+    ]
+  },
+  {
+    "id": "tf-090",
+    "category": "State",
+    "question": "You want to protect a specific resource from being destroyed by anyone running 'terraform destroy'. Which meta-argument do you use?",
+    "options": [
+      "A) prevent_destroy = true",
+      "B) read_only = true",
+      "C) immutable = true",
+      "D) ignore_changes = all"
+    ]
+  },
+  {
+    "id": "tf-091",
+    "category": "CLI",
+    "question": "When running 'terraform plan', you see a resource with a '~' (tilde) prefix. What does this indicate?",
+    "options": [
+      "A) The resource will be created.",
+      "B) The resource will be destroyed.",
+      "C) The resource will be updated in-place.",
+      "D) The resource will be destroyed and then recreated."
+    ]
+  },
+  {
+    "id": "tf-092",
+    "category": "Modules",
+    "question": "What happens if you do not specify a 'version' constraint for a module in the registry?",
+    "options": [
+      "A) Terraform throws an error.",
+      "B) Terraform downloads the oldest available version.",
+      "C) Terraform downloads the latest available version.",
+      "D) Terraform asks the user to pick a version manually."
+    ]
+  },
+  {
+    "id": "tf-093",
+    "category": "HCL-Advanced",
+    "question": "Which function allows you to provide a default value if a map lookup fails to find a specific key?",
+    "options": ["A) element()", "B) lookup()", "C) coalesce()", "D) try()"]
+  },
+  {
+    "id": "tf-094",
+    "category": "Workflow",
+    "question": "Where does Terraform look for 'auto.tfvars' files?",
+    "options": [
+      "A) Only in the home directory.",
+      "B) In the current working directory.",
+      "C) In the .terraform/plugins folder.",
+      "D) In the user's environment variables."
+    ]
+  },
+  {
+    "id": "tf-095",
+    "category": "CLI",
+    "question": "Which command is used to show a human-readable output of the current state or a plan file?",
+    "options": ["A) terraform state list", "B) terraform show", "C) terraform display", "D) terraform view"]
+  },
+  {
+    "id": "tf-096",
+    "category": "Workflow",
+    "question": "In a 'remote-exec' provisioner, which argument is used to specify the list of shell commands to run?",
+    "options": ["A) commands", "B) script", "C) inline", "D) exec"]
+  },
+  {
+    "id": "tf-097",
+    "category": "HCL-Advanced",
+    "question": "What is the function of 'terraform_data' (introduced in 1.4) as a replacement for 'null_resource'?",
+    "options": [
+      "A) To store binary files in the state.",
+      "B) To trigger provisioners or store values without a dedicated provider resource.",
+      "C) To encrypt state data.",
+      "D) To manage local text files."
+    ]
+  },
+  {
+    "id": "tf-098",
+    "category": "Cloud-Enterprise",
+    "question": "In Terraform Cloud, which feature allows you to manage multiple sets of infrastructure from a single configuration by separating state and variables?",
+    "options": ["A) Modules", "B) Workspaces", "C) Providers", "D) Backends"]
+  },
+  {
+    "id": "tf-099",
+    "category": "State",
+    "question": "You need to move a resource from one state file to another. Which command is used for this manual surgery?",
+    "options": ["A) terraform state mv", "B) terraform state pull", "C) terraform state push", "D) terraform state rm"]
+  },
+  {
+    "id": "tf-100",
+    "category": "Workflow",
+    "question": "Which file does Terraform use to ensure that every team member uses the exact same provider versions and checksums?",
+    "options": ["A) terraform.tfstate", "B) .terraform.lock.hcl", "C) terraform.tfvars", "D) versions.tf"]
+  },
+  {
+    "id": "tf-101",
+    "category": "HCL-Advanced",
+    "question": "When using a 'dynamic' block, what is the default name of the object representing the current element if the 'iterator' argument is NOT specified?",
+    "options": ["A) element", "B) each.value", "C) The name of the dynamic block itself", "D) item"]
+  },
+  {
+    "id": "tf-102",
+    "category": "Workflow",
+    "question": "Which command would you use to verify if your configuration is internally consistent and syntactically correct without accessing any remote services?",
+    "options": ["A) terraform plan", "B) terraform validate", "C) terraform init", "D) terraform refresh"]
+  },
+  {
+    "id": "tf-103",
+    "category": "CLI",
+    "question": "What is the purpose of the '-input=false' flag?",
+    "options": [
+      "A) It prevents Terraform from reading .tfvars files.",
+      "B) It disables all CLI output.",
+      "C) It tells Terraform not to prompt for interactive input (useful in CI/CD).",
+      "D) It prevents Terraform from reading the state file."
+    ]
+  },
+  {
+    "id": "tf-104",
+    "category": "Cloud-Enterprise",
+    "question": "In Terraform Cloud, where are 'Policy Sets' defined and managed?",
+    "options": ["A) Inside the .tf configuration files.", "B) At the Organization level.", "C) Only within individual Workspaces.", "D) In the providers block."]
+  },
+  {
+    "id": "tf-105",
+    "category": "HCL-Advanced",
+    "question": "What is the result of the following expression: coalesce(null, \"\", \"hello\", \"world\")?",
+    "options": ["A) \"\"", "B) \"hello\"", "C) \"world\"", "D) null"]
+  },
+  {
+    "id": "tf-106",
+    "category": "Workflow",
+    "question": "You have multiple 'provider' blocks for AWS to manage resources in different regions. How do you distinguish between them in a resource block?",
+    "options": ["A) By the region name.", "B) Using the 'alias' meta-argument.", "C) By creating separate directories for each region.", "D) Using the 'version' argument."]
+  },
+  {
+    "id": "tf-107",
+    "category": "State",
+    "question": "Which of the following commands does NOT trigger an automatic refresh of the state by default?",
+    "options": ["A) terraform plan", "B) terraform apply", "C) terraform output", "D) terraform destroy"]
+  },
+  {
+    "id": "tf-108",
+    "category": "HCL-Advanced",
+    "question": "What does the 'one()' function do in Terraform?",
+    "options": [
+      "A) It converts a list to a string.",
+      "B) It takes a list/set and returns the first element if length is 1, null if length is 0, and errors if length > 1.",
+      "C) It ensures only one resource is created.",
+      "D) It increments a number by one."
+    ]
+  },
+  {
+    "id": "tf-109",
+    "category": "Cloud-Enterprise",
+    "question": "Which Terraform Cloud feature allows you to visualize the infrastructure as a diagram before applying?",
+    "options": ["A) Sentinel", "B) Drift Detection", "C) Health Views", "D) Speculative Plans"]
+  },
+  {
+    "id": "tf-110",
+    "category": "CLI",
+    "question": "Which environment variable can you use to specify a custom path for the Terraform CLI configuration file (like .terraformrc)?",
+    "options": ["A) TF_CLI_CONFIG_FILE", "B) TF_CONFIG_PATH", "C) TF_HOME", "D) TF_VAR_config"]
   }
 ]
