@@ -30,24 +30,59 @@ The goal is to refactor our "Random Pet" lab. Instead of hardcoding the length o
 ## 🚀 The Solution
 View the full code here: [Challenge 03 Repo](https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/03-variables)
 
-```hcl
-# variables.tf
-variable "prefix" {
-  type        = string
-  default     = "Mrs"
-  description = "The prefix for the pet name"
-}
+## 1. Defining the Input
+Instead of hardcoding the prefix "Mrs", let's create a variable. This allows other team members to use your code without editing the logic.
 
+```hcl
+variable "prefix" {
+  type = string
+  default = "Mrs"
+  description = "Prefix of the pet"
+}
+```
+
+## 2. Use the variable 
+```hcl
 # main.tf
-resource "random_pet" "my-pet" {
-  prefix    = var.prefix
+resource "random_pet" "my-random-pet" {
+  prefix = var.prefix
   separator = "."
 }
 
 # outputs.tf
-output "pet_name" {
-  value       = random_pet.my-pet.id
-  description = "The full generated pet name"
+output "my-random-pet-name" {
+  value = random_pet.my-random-pet
+  description = "The full name of the random generated pet"
+}
+```
+
+## 3. The Output Anatomy
+When you run terraform plan then you will see:
+```
+my-random-pet-name = {
+  "id" = "Mrs.awaited.bullfrog"
+  "keepers" = tomap(null) /* of string */
+  "length" = 2
+  "prefix" = "Mrs"
+  "separator" = "."
+}
+```
+Why does it look like that?
+You likely used an output that exported the entire resource object. While useful for debugging, it's "noisy." In the output above:
+
+  - tomap(null): This is Terraform's way of saying, "This attribute is a Map type, but it's currently empty."
+
+   - /* of string */: This is a hint that if you did provide values, they would need to be strings.
+
+##4. Refining the Output
+When you run terraform apply then you will see:
+```
+my-random-pet-name = {
+  "id" = "Mrs.awaited.bullfrog"
+  "keepers" = tomap(null) /* of string */
+  "length" = 2
+  "prefix" = "Mrs"
+  "separator" = "."
 }
 ```
 
