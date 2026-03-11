@@ -6,30 +6,15 @@
 
         <div id="searchbox">
             <input id="searchInput" autofocus placeholder="Search Terraform labs..." type="search" autocomplete="off">
-            <div id="searchResults" class="search-results" style="display: none;"></div>
+            <ul id="customResults" class="search-results" style="display: none;"></ul>
         </div>
 
-        <div class="buttons">
+       <div class="buttons">
             <button class="google-btn" onclick="document.getElementById('searchInput').focus()">Terraform Search</button>
-            {{- $firstPost := (where site.RegularPages "Section" "posts").ByWeight | first 1 -}}
-            {{- range $firstPost }}
-            <a href="{{ .Permalink }}" class="google-btn">I'm Feeling Lucky</a>
-            {{- end }}
+            <button class="google-btn" id="lucky-btn">I'm Feeling Lucky</button>
         </div>
 
         {{- partial "social_icons.html" (dict "context" . "align" true) -}}
-
-        <div class="roadmap-section">
-            <h2 class="roadmap-title">Learning Path</h2>
-            <div class="roadmap-grid">
-                {{- range (where site.RegularPages "Section" "posts").ByWeight }}
-                <a href="{{ .Permalink }}" class="roadmap-card">
-                    <span class="roadmap-no">{{ .Weight }}</span>
-                    <span class="roadmap-label">{{ .Title }}</span>
-                </a>
-                {{- end }}
-            </div>
-        </div>
     </div>
     {{- end }}
 </div>

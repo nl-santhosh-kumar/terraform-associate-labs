@@ -1,79 +1,127 @@
-/* Layout Spacing */
+/* 1. The Container: Keep it centered but allow scrolling */
+.profile {
+    display: flex;
+    justify-content: center;
+    padding-top: 20vh; /* This "anchors" the search bar at a fixed height from the top */
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* 2. The Inner Wrapper: Prevents the horizontal widening */
 .profile_inner {
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+}
+
+/* 3. The Search Bar: Ensure it doesn't move */
+#searchbox {
+    margin: 30px 0;
+    position: relative;
+}
+
+/* 4. The Results: Ensure they are NOT absolute, so they push the page down */
+.search-results {
+    margin-top: 20px;
+    text-align: left; /* Results look better left-aligned */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-top: 5rem;
+    gap: 10px;
 }
 
-/* Roadmap Grid */
-.roadmap-section {
+/* 5. Hide buttons/socials when searching to keep it clean */
+.searching .buttons,
+.searching .social-icons,
+.searching span {
+    display: none;
+}
+
+/* Optional: Smooth transition for the Title */
+.profile_inner h1 {
+    transition: all 0.3s ease;
+}
+
+/* If you want the title to shrink or move when results appear */
+.search-active h1 {
+    margin-top: -5vh;        /* Pulls title up slightly to make room for results */
+    font-size: 1.8rem;
+}
+/* Search Input Styling */
+#searchInput {
     width: 100%;
-    max-width: 800px;
-    margin-top: 4rem;
-}
-
-.roadmap-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
-}
-
-.roadmap-card {
-    display: flex;
-    align-items: center;
-    padding: 1.2rem;
-    background: var(--entry);
+    padding: 14px 25px;
+    margin: 20px 0;
+    border-radius: 30px;
     border: 1px solid var(--border);
-    border-radius: 12px;
-    text-decoration: none;
+    background: var(--code-bg);
+    color: var(--content);
+    font-size: 1.1rem;
+    outline: none;
     transition: all 0.2s ease;
 }
 
-.roadmap-card:hover {
-    border-color: var(--primary);
+#searchInput:focus {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-color: var(--tertiary);
+}
+
+/* Remove default bullets and padding */
+.search-results-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    width: 100%;
+}
+
+/* Style the list items */
+.search-results-list li {
+    margin-bottom: 12px; /* Spacing between labs */
+    text-align: left;
+}
+
+/* Style the link inside the list item */
+.result-link {
+    display: block;
+    padding: 15px;
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.result-link:hover {
     background: var(--tertiary);
 }
 
-.roadmap-no {
-    font-weight: 800;
-    margin-right: 1rem;
+.result-title {
+    font-weight: bold;
     color: var(--primary);
-    font-size: 1.2rem;
+    display: block;
 }
 
-/* Search results dropdown */
-#searchbox { position: relative; width: 100%; max-width: 800px; }
-.search-results {
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    display: block;
-    background: var(--entry);
+.profile_inner #searchResults li a {
+    position: relative !important; /* Forces it back into the list flow */
+    width: auto !important;       /* Stops it from stretching weirdly */
+    height: auto !important;      /* Lets the content define the height */
+    display: block !important;    /* Ensures it stays as a vertical row */
+    padding: 15px;
+    margin-bottom: 8px;
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 0.5rem;
-    z-index: 50;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    background: var(--entry);
+    text-decoration: none;
 }
-.search-results {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    max-height: 56vh;
-    overflow: auto;
+
+/* Ensure the list container itself is clean */
+#searchResults {
+    list-style: none;
+    padding: 0;
+    display: block !important;
 }
-.search-results .roadmap-card {
-    display: flex;
-    align-items: center;
-    padding: 0.6rem 0.8rem;
-    margin: 0;
-    width: 100%;
-    box-sizing: border-box;
-    position: relative;
+
+/* Style for the text inside the link since we reset the height */
+.result-title {
+    font-weight: bold;
+    color: var(--primary);
 }
-.search-results .roadmap-no { font-size: 1rem; margin-right: 0.75rem; }
-.search-results .roadmap-label { font-size: 0.95rem; }
