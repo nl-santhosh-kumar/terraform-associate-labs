@@ -24,6 +24,7 @@ async function initSearch() {
       const query = input.value.trim();
       if (query.length > 0) {
         // 1. Perform the search
+        console.log("Searching for:", query);
         const searchResults = fuse.search(query);
 
         // 2. Clear previous results and hide roadmap

@@ -265,7 +265,12 @@
     "id": "tf-078",
     "category": "Workflow",
     "question": "You want to use a specific version of a provider. Where should you define the 'required_providers' block?",
-    "options": ["A) Inside the resource block.", "B) Inside the provider block.", "C) Inside the terraform block.", "D) In a separate .tfvars file."]
+    "options": [
+      "A) Inside the resource block.",
+      "B) Inside the provider block.",
+      "C) Inside the terraform block.",
+      "D) In a separate .tfvars file."
+    ]
   },
   {
     "id": "tf-079",
@@ -293,7 +298,12 @@
     "id": "tf-081",
     "category": "State",
     "question": "Which command is used to change the backend of an existing project (e.g., from local to S3)?",
-    "options": ["A) terraform apply", "B) terraform init -migrate-state", "C) terraform push", "D) terraform state mv"]
+    "options": [
+      "A) terraform apply",
+      "B) terraform init -migrate-state",
+      "C) terraform push",
+      "D) terraform state mv"
+    ]
   },
   {
     "id": "tf-082",
@@ -338,7 +348,12 @@
     "id": "tf-086",
     "category": "Workflow",
     "question": "Which provisioner block is used to execute a script on a remote resource via SSH or WinRM?",
-    "options": ["A) local-exec", "B) remote-exec", "C) cloud-init", "D) salt-master"]
+    "options": [
+      "A) local-exec",
+      "B) remote-exec",
+      "C) cloud-init",
+      "D) salt-master"
+    ]
   },
   {
     "id": "tf-087",
@@ -422,7 +437,12 @@
     "id": "tf-095",
     "category": "CLI",
     "question": "Which command is used to show a human-readable output of the current state or a plan file?",
-    "options": ["A) terraform state list", "B) terraform show", "C) terraform display", "D) terraform view"]
+    "options": [
+      "A) terraform state list",
+      "B) terraform show",
+      "C) terraform display",
+      "D) terraform view"
+    ]
   },
   {
     "id": "tf-096",
@@ -451,25 +471,45 @@
     "id": "tf-099",
     "category": "State",
     "question": "You need to move a resource from one state file to another. Which command is used for this manual surgery?",
-    "options": ["A) terraform state mv", "B) terraform state pull", "C) terraform state push", "D) terraform state rm"]
+    "options": [
+      "A) terraform state mv",
+      "B) terraform state pull",
+      "C) terraform state push",
+      "D) terraform state rm"
+    ]
   },
   {
     "id": "tf-100",
     "category": "Workflow",
     "question": "Which file does Terraform use to ensure that every team member uses the exact same provider versions and checksums?",
-    "options": ["A) terraform.tfstate", "B) .terraform.lock.hcl", "C) terraform.tfvars", "D) versions.tf"]
+    "options": [
+      "A) terraform.tfstate",
+      "B) .terraform.lock.hcl",
+      "C) terraform.tfvars",
+      "D) versions.tf"
+    ]
   },
   {
     "id": "tf-101",
     "category": "HCL-Advanced",
     "question": "When using a 'dynamic' block, what is the default name of the object representing the current element if the 'iterator' argument is NOT specified?",
-    "options": ["A) element", "B) each.value", "C) The name of the dynamic block itself", "D) item"]
+    "options": [
+      "A) element",
+      "B) each.value",
+      "C) The name of the dynamic block itself",
+      "D) item"
+    ]
   },
   {
     "id": "tf-102",
     "category": "Workflow",
     "question": "Which command would you use to verify if your configuration is internally consistent and syntactically correct without accessing any remote services?",
-    "options": ["A) terraform plan", "B) terraform validate", "C) terraform init", "D) terraform refresh"]
+    "options": [
+      "A) terraform plan",
+      "B) terraform validate",
+      "C) terraform init",
+      "D) terraform refresh"
+    ]
   },
   {
     "id": "tf-103",
@@ -486,7 +526,12 @@
     "id": "tf-104",
     "category": "Cloud-Enterprise",
     "question": "In Terraform Cloud, where are 'Policy Sets' defined and managed?",
-    "options": ["A) Inside the .tf configuration files.", "B) At the Organization level.", "C) Only within individual Workspaces.", "D) In the providers block."]
+    "options": [
+      "A) Inside the .tf configuration files.",
+      "B) At the Organization level.",
+      "C) Only within individual Workspaces.",
+      "D) In the providers block."
+    ]
   },
   {
     "id": "tf-105",
@@ -498,13 +543,23 @@
     "id": "tf-106",
     "category": "Workflow",
     "question": "You have multiple 'provider' blocks for AWS to manage resources in different regions. How do you distinguish between them in a resource block?",
-    "options": ["A) By the region name.", "B) Using the 'alias' meta-argument.", "C) By creating separate directories for each region.", "D) Using the 'version' argument."]
+    "options": [
+      "A) By the region name.",
+      "B) Using the 'alias' meta-argument.",
+      "C) By creating separate directories for each region.",
+      "D) Using the 'version' argument."
+    ]
   },
   {
     "id": "tf-107",
     "category": "State",
     "question": "Which of the following commands does NOT trigger an automatic refresh of the state by default?",
-    "options": ["A) terraform plan", "B) terraform apply", "C) terraform output", "D) terraform destroy"]
+    "options": [
+      "A) terraform plan",
+      "B) terraform apply",
+      "C) terraform output",
+      "D) terraform destroy"
+    ]
   },
   {
     "id": "tf-108",
@@ -521,12 +576,22 @@
     "id": "tf-109",
     "category": "Cloud-Enterprise",
     "question": "Which Terraform Cloud feature allows you to visualize the infrastructure as a diagram before applying?",
-    "options": ["A) Sentinel", "B) Drift Detection", "C) Health Views", "D) Speculative Plans"]
+    "options": [
+      "A) Sentinel",
+      "B) Drift Detection",
+      "C) Health Views",
+      "D) Speculative Plans"
+    ]
   },
   {
     "id": "tf-110",
     "category": "CLI",
     "question": "Which environment variable can you use to specify a custom path for the Terraform CLI configuration file (like .terraformrc)?",
-    "options": ["A) TF_CLI_CONFIG_FILE", "B) TF_CONFIG_PATH", "C) TF_HOME", "D) TF_VAR_config"]
+    "options": [
+      "A) TF_CLI_CONFIG_FILE",
+      "B) TF_CONFIG_PATH",
+      "C) TF_HOME",
+      "D) TF_VAR_config"
+    ]
   }
 ]

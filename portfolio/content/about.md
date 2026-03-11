@@ -2,6 +2,7 @@
 title: "About Me"
 layout: "about" # Or leave blank for standard layout
 summary: "The journey of an aspiring DevOps Engineer."
+searchable: false
 ---
 
 ## ☁️ My Infrastructure Journey
