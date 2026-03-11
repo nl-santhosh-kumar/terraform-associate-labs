@@ -86,6 +86,47 @@ my-random-pet-name = {
 }
 ```
 
+
+---
+## 🧠 Knowledge Check
+
+Test your understanding of Terraform State and Outputs before moving to the next lesson.
+
+### Question 1
+In the output below, which **dot-notation** path would you use to get *only* the name of the pet?
+`my-random-pet-name = { "id" = "Mrs.awaited.bullfrog", ... }`
+
+**A)** `random_pet.my-pet`  
+**B)** `random_pet.my-pet.id`  
+**C)** `random_pet.id.my-pet`
+
+---
+
+### Question 2
+What does `tomap(null) /* of string */` in a Terraform output signify?
+**A)** A critical error in the configuration.  
+**B)** The pet was not created successfully.  
+**C)** An optional map attribute that has no value assigned.
+
+---
+
+### Question 3
+Why is the `serial` number in your `terraform.tfstate` file currently set to `1`?
+**A)** It is the first time the state has been created/updated.  
+**B)** You are using Terraform version 1.0.  
+**C)** You only have one resource in your file.
+
+---
+
+<details>
+<summary><b>Check the Answers</b></summary>
+
+1. **B** – You always go `Resource.Name.Attribute`.
+2. **C** – It's just Terraform's way of showing an empty data structure.
+3. **A** – The serial increments every time the state is modified.
+</details>
+
+
 ## 📚 004 Exam: Official Documentation Reference
 
 To master the variables and outputs section of the **Terraform Associate (004)** exam, I utilized the following official resources:

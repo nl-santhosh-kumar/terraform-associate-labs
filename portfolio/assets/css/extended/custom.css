@@ -263,3 +263,23 @@ code, pre {
     text-transform: uppercase;
     color: var(--secondary);
 }
+
+
+/* Knowledge Check Styling */
+details {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--tertiary);
+}
+
+summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--secondary); /* Uses your theme's accent color */
+}
+
+summary:hover {
+    text-decoration: underline;
+}
