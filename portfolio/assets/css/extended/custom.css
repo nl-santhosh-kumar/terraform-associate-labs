@@ -32,7 +32,7 @@ code, pre {
 /* 2. The Inner Wrapper: Prevents the horizontal widening */
 .profile_inner {
     width: 100%;
-    max-width: 650px;
+    max-width: 600px;
     text-align: center;
 }
 
@@ -49,6 +49,7 @@ code, pre {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    list-style-type: none;
 }
 
 /* 5. Hide buttons/socials when searching to keep it clean */
@@ -68,8 +69,21 @@ code, pre {
     margin-top: -5vh;        /* Pulls title up slightly to make room for results */
     font-size: 1.8rem;
 }
+
+#searchbox {
+    width: 100%;
+    /* Set your preferred "Google" size here */
+    max-width: 400px; 
+    /* Centers the bar */
+    margin: 0 auto;
+}
+
+
 /* Search Input Styling */
 #searchInput {
+    max-width: 400px;
+    box-sizing: border-box;
+    margin: 0 auto;
     width: 100%;
     padding: 14px 25px;
     margin: 20px 0;

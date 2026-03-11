@@ -10,7 +10,12 @@
         </div>
 
        <div class="button-container">
-            <button class="google-btn" onclick="document.getElementById('searchInput').focus()">Terraform Search</button>
+        {{- $learningPath := (where site.RegularPages "Section" "posts").ByWeight -}}
+        {{- $startNode := index $learningPath 0 -}}
+
+        <button class="google-btn" onclick="window.location.href='{{ $startNode.Permalink }}'">
+            Initialize Learning
+        </button>
             <button class="google-btn" id="lucky-btn">I'm Feeling Lucky</button>
         </div>
 
