@@ -16,7 +16,10 @@
         <button class="google-btn" onclick="window.location.href='{{ $startNode.Permalink }}'">
             Initialize Learning
         </button>
-        <button class="google-btn" id="lucky-btn">I'm Feeling Lucky</button>
+        <button class="google-btn" id="lucky-btn"
+        onmouseover="this.innerText='Take a Quiz?'" 
+        onmouseout="this.innerText='I\'m Feeling Lucky'"
+        >I'm Feeling Lucky</button>
         </div>
 
         {{- partial "social_icons.html" (dict "context" . "align" true) -}}

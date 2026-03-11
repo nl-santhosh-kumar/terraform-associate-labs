@@ -217,8 +217,14 @@ code, pre {
     border-color: var(--secondary);
 }
 
-
-
+.google-btn:hover {
+    /* The Official HashiCorp/Terraform Pink/Magenta */
+    border-color: #844FBA; 
+    color: #844FBA;
+    background-color: #f8f9fa; /* Keep the light background */
+    box-shadow: 0 1px 3px rgba(132, 79, 186, 0.2);
+    transition: all 0.2s ease-in-out;
+}
 
 .paginav {
     margin: 30px 0;
