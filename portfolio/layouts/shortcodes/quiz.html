@@ -17,37 +17,99 @@
 </div>
 
 <script>
-(function() {
+    (function() {
     const app = document.getElementById('quiz-app');
     if (!app) return;
 
-    const questions = JSON.parse(app.getAttribute('data-quiz'));
+    // 1. Get ALL data first
+    const allQuestions = JSON.parse(app.getAttribute('data-quiz'));
+    
+    // 2. Identify UI Elements
     const qBody = document.getElementById('q-body');
     const qExp = document.getElementById('q-explanation');
     const nextBtn = document.getElementById('next-btn');
     const progressText = document.getElementById('q-progress');
     const scoreText = document.getElementById('q-score');
 
+    // 3. Define State (Empty to start)
+    let currentQuestions = []; 
     let current = 0;
     let score = 0;
 
+    // --- FUNCTION: SHOW MENU ---
+    function showMenu() {
+        // Force-hide quiz elements
+        if(nextBtn) nextBtn.style.display = "none";
+        if(qExp) qExp.style.display = "none";
+        if(progressText) progressText.innerText = "Terraform Quiz";
+        if(scoreText) scoreText.innerText = "";
+
+        const categories = [...new Set(allQuestions.map(q => q.category))];
+
+        // Inject Menu into the body
+        qBody.innerHTML = `
+            <div id="quiz-menu-container" style="text-align: center; padding: 10px;">
+                <p style="margin-bottom: 20px; font-weight: bold;">Choose your study mode:</p>
+                <button class="menu-btn" data-cat="all" style="width:100%; padding: 15px; margin-bottom: 15px; cursor: pointer; background: var(--primary); color: white; border: none; border-radius: 4px; font-weight: bold;">Mixed Practice (10 Random)</button>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    ${categories.map(cat => `
+                        <button class="menu-btn" data-cat="${cat}" style="padding: 12px; cursor: pointer; background: var(--code-bg); border: 1px solid var(--border); border-radius: 4px; font-size: 0.85em;">${cat}</button>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+
+        // Attach listeners to the new buttons
+        qBody.querySelectorAll('.menu-btn').forEach(btn => {
+            btn.onclick = (e) => {
+                e.preventDefault();
+                const cat = btn.getAttribute('data-cat');
+                startQuiz(cat);
+            };
+        });
+    }
+
+    // --- FUNCTION: START QUIZ ---
+    function startQuiz(category) {
+        // Filter pool
+        let pool = (category === 'all') 
+            ? [...allQuestions] 
+            : allQuestions.filter(q => q.category === category);
+
+        // Randomize and take 10
+        currentQuestions = pool.sort(() => 0.5 - Math.random()).slice(0, 10);
+        
+        current = 0;
+        score = 0;
+        if(scoreText) scoreText.innerText = `Score: 0`;
+        
+        renderQuestion();
+    }
+
+    // --- FUNCTION: RENDER QUESTION ---
     function renderQuestion() {
-        const q = questions[current];
+        const q = currentQuestions[current];
+        if (!q) return;
+
         qExp.style.display = "none";
         nextBtn.style.display = "none";
-        progressText.innerText = `LOB ${current + 1}/${questions.length}`;
+        progressText.innerText = `LOB ${current + 1}/${currentQuestions.length}`;
         
         qBody.innerHTML = `
-            <p style="margin-bottom: 20px; font-size: 1.1em;">${q.question}</p>
-            <div style="display: grid; gap: 10px;">
-                ${q.options.map(o => `<button class="q-opt">${o}</button>`).join('')}
+            <div class="question-container">
+                <p style="margin-bottom: 20px; font-size: 1.1em; border-left: 4px solid var(--primary); padding-left: 10px;">
+                    <small style="opacity:0.6; display:block;">${q.category}</small>
+                    ${q.question}
+                </p>
+                <div style="display: grid; gap: 10px;">
+                    ${q.options.map(o => `<button class="q-opt" style="padding: 12px; text-align: left; cursor: pointer; border: 1px solid var(--border); background: var(--entry); border-radius: 4px;">${o}</button>`).join('')}
+                </div>
             </div>
         `;
 
         qBody.querySelectorAll('.q-opt').forEach(btn => {
             btn.onclick = () => {
-                const isCorrect = btn.innerText.trim().toUpperCase().startsWith(q.answer.toUpperCase());
-                
+                const isCorrect = btn.innerText.trim() === q.answer;
                 qBody.querySelectorAll('.q-opt').forEach(b => b.disabled = true);
 
                 if (isCorrect) {
@@ -60,34 +122,38 @@
                     btn.style.color = "white";
                 }
 
-                // Show Explanation if it exists
                 if (q.explanation) {
-                    qExp.innerHTML = `<strong>Note:</strong> ${q.explanation}`;
+                    qExp.innerHTML = `<strong>Explanation:</strong> ${q.explanation}`;
                     qExp.style.display = "block";
                 }
 
                 nextBtn.style.display = "block";
-                nextBtn.innerText = (current === questions.length - 1) ? "Finish Quiz" : "Next Question";
+                nextBtn.innerText = (current === currentQuestions.length - 1) ? "Finish" : "Next";
             };
         });
     }
 
     nextBtn.onclick = () => {
         current++;
-        if (current < questions.length) renderQuestion();
+        if (current < currentQuestions.length) renderQuestion();
         else showFinal();
     };
 
     function showFinal() {
-        qBody.innerHTML = `<div style="text-align: center; padding: 20px;"><h3>Final Result: ${score}/${questions.length}</h3><p>Terraform knowledge locked in! 🚀</p><button onclick="location.reload()" style="margin-top:15px; background:none; border:1px solid var(--primary); color:var(--primary); padding:8px 16px; border-radius:4px; cursor:pointer;">Restart</button></div>`;
+        qBody.innerHTML = `
+            <div style="text-align: center; padding: 20px;">
+                <h3>Results: ${score}/${currentQuestions.length}</h3>
+                <button id="restart-quiz" style="margin-top:20px; background: var(--primary); color:white; padding:10px 20px; border:none; border-radius:4px; cursor:pointer;">Back to Categories</button>
+            </div>`;
         qExp.style.display = "none";
         nextBtn.style.display = "none";
+        document.getElementById('restart-quiz').onclick = () => showMenu();
     }
 
-    renderQuestion();
+    // CRITICAL: Call the menu only. Do NOT call renderQuestion here.
+    showMenu();
 })();
 </script>
-
 <style>
     .quiz-box { background: var(--tertiary); padding: 25px; border-radius: 12px; border: 1px solid var(--border); margin: 30px 0; }
     .q-opt { display: block; width: 100%; text-align: left; padding: 14px; background: var(--theme); color: var(--content); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 0.95em; }
