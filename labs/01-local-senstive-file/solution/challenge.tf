@@ -4,7 +4,7 @@ resource "local_sensitive_file" "sensitive_data" {
   filename = "./sensitive_info.txt" #local path
 
   # The content requested by the problem statement
-  content  = "my-ultra-secure-password"
+  content  = "SECRET_API_TOKEN_999"
 
   # Owner Read/Write only (0600)
   file_permission = "0600"
@@ -14,6 +14,8 @@ resource "local_sensitive_file" "sensitive_data" {
 # 2. create a local file with sensitive content
 resource "local_file" "non_sensitive_data" {
   filename = "./non_sensitive_info.txt" #local path
-  content  = "my-non-sensitive-info" 
+
+  content  = "SECRET_API_TOKEN_999" 
+  
   file_permission = "0600"
 }
