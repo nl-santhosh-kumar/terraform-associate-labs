@@ -33,9 +33,9 @@ Each lab is self-contained within the `/labs` directory:
 
 | Lab ID | Name | Focus Area | Difficulty |
 | :--- | :--- | :--- | :--- |
-| **Lab 01** | [Basic Instance](./labs/01-basic-instance) | Providers, Resources, Variables | ⭐ (Beginner) |
-| **Lab 02** | [VPC Networking](./labs/02-vpc-networking) | State, Outputs, Networking | ⭐⭐ (Easy) |
-| **Lab 03** | [Modular Web App](./labs/03-modules) | Reusable Modules, Loops | ⭐⭐⭐ (Intermediate) |
+| **Lab 01** | [Local Sensitive File](./labs/01-local-sensitive-file) | Local Sensitive File | ⭐ (Beginner) |
+| **Lab 02** | [Random Pet](./labs/02-random-pet) | Random Local Provider | ⭐ (Beginner) |
+| **Lab 03** | [Variables](./labs/03-variables) | Reusable Variables | ⭐ (Beginner) |
 
 ---
 
@@ -43,8 +43,8 @@ Each lab is self-contained within the `/labs` directory:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/terraform-labs.git](https://github.com/YOUR_USERNAME/terraform-labs.git)
-   cd terraform-labs/labs/01-basic-instance
+   git clone [https://github.com/nl-santhosh-kumar/terraform-associate-labs](https://github.com/nl-santhosh-kumar/terraform-associate-labs)
+   cd terraform-labs/labs/01-local-sensitive-file
    ```
 
 2. **Initialize the workspace:**
