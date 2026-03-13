@@ -20,6 +20,16 @@
         }
       };
     }
+
+    const questionsData = engine.getAttribute('data-questions');
+        const answersUrl = engine.getAttribute('data-answers'); // No more window object!
+        
+        allQuestionsPool = JSON.parse(questionsData);
+        
+        // 2. Store the URL in a local variable for the fetch function
+        // We can attach it to our local state instead of 'window'
+        quizState.answersUrl = answersUrl;
+
     showMenu();
   });
 

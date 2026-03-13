@@ -1,27 +1,91 @@
-# terraform-associate-labs
-🚀 A comprehensive collection of hands-on Terraform labs, configuration files, and infrastructure-as-code (IaC) challenges. Documenting my journey toward the HashiCorp Terraform Associate Certification.
+# 🚀 Terraform Learning Labs
 
-
-## 📚 Technical Notes (from HashiCorp Docs)
-## 🛠️ Providers Explored
-### Local Provider Overview
-The `local` provider is used to manage resources on the machine where Terraform is running. It does not require any cloud credentials.
-
-### Resource: local_sensitive_file
-- **Usage:** Used when the file contains secrets.
-- **Behavior:** Prevents the `content` from being displayed in the terminal output.
-- **Default Permissions:** Often more restrictive than `local_file`.
-
-### Security Warning
-Values marked as `sensitive` in Terraform are only masked in the **UI and Console**. They remain available in **plain text** within the `.tfstate` file.
+A collection of hands-on labs designed to master Infrastructure as Code (IaC) using Terraform. This repository covers everything from basic resource provisioning to advanced modular architecture.
 
 ---
-## 📂 Repository Structure
-* `/Challenges`: Contains individual challenge scenarios.
-    * `/challenge-01-local-provider`: Problem statement and solution for local file management.
 
-## 🚀 How to Use This Repo
-1. Navigate to the specific challenge folder.
-2. Read the `README.md` for the problem statement.
-3. Move into the `/solution` directory.
-4. Run `terraform init` and `terraform apply`.
+## 📋 Table of Contents
+- [🚀 Terraform Learning Labs](#-terraform-learning-labs)
+  - [📋 Table of Contents](#-table-of-contents)
+  - [🛠 Prerequisites](#-prerequisites)
+  - [📂 Lab Structure](#-lab-structure)
+  - [🚀 Getting Started](#-getting-started)
+  - [⚠️ Security \& Cost Warning](#️-security--cost-warning)
+  - [🧹 Cleanup](#-cleanup)
+  - [⚖️ License](#️-license)
+
+---
+
+## 🛠 Prerequisites
+
+Before starting these labs, ensure you have the following installed and configured:
+
+1.  **Terraform CLI** (v1.0.0+): [Download here](https://www.terraform.io/downloads)
+2.  **Cloud Provider Account**: (e.g., AWS, Azure, or GCP)
+3.  **Provider CLI**: Properly configured with credentials (e.g., `aws configure`)
+4.  **A Code Editor**: VS Code with the official HashiCorp Terraform extension is recommended.
+
+---
+
+## 📂 Lab Structure
+
+Each lab is self-contained within the `/labs` directory:
+
+| Lab ID | Name | Focus Area | Difficulty |
+| :--- | :--- | :--- | :--- |
+| **Lab 01** | [Basic Instance](./labs/01-basic-instance) | Providers, Resources, Variables | ⭐ (Beginner) |
+| **Lab 02** | [VPC Networking](./labs/02-vpc-networking) | State, Outputs, Networking | ⭐⭐ (Easy) |
+| **Lab 03** | [Modular Web App](./labs/03-modules) | Reusable Modules, Loops | ⭐⭐⭐ (Intermediate) |
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/YOUR_USERNAME/terraform-labs.git](https://github.com/YOUR_USERNAME/terraform-labs.git)
+   cd terraform-labs/labs/01-basic-instance
+   ```
+
+2. **Initialize the workspace:**
+   ```bash
+   terraform init
+   ```
+
+3. **Plan the infrastructure:**
+   ```bash
+   terraform plan
+   ```
+
+4. **Apply the changes:**
+   ```bash
+   terraform apply
+   ```
+
+---
+
+## ⚠️ Security & Cost Warning
+
+* **Secrets**: Never commit `.tfvars` files containing secrets or your `.tfstate` files to this repository. Use the provided `.gitignore`.
+* **Costs**: Running these labs may incur charges from your cloud provider. Always check the `terraform plan` output before applying.
+* **Auto-approve**: Avoid using `-auto-approve` until you are fully confident in the configuration.
+
+---
+
+## 🧹 Cleanup
+
+To avoid ongoing charges, remember to destroy the resources once you have finished a lab:
+
+```bash
+terraform destroy
+```
+
+---
+
+## ⚖️ License
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+**Maintained by:** Santhosh Kumar 
+*Feel free to open an issue or a pull request if you find a bug or have an improvement!*
