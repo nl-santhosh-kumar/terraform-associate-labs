@@ -22,7 +22,7 @@ Standard resources like `local_file` can accidentally leak secrets (passwords, k
 * **Console Masking:** Automatically replaces secret values with `(sensitive value)` during `plan` and `apply`.
 * **Disk Security:** Forces specific OS-level permissions on the created file.
 
----
+
 
 👥 1. Protecting from the "Viewer" (Logs/Screen)
 The primary "person" this protects is anyone watching your terminal or CI/CD logs.
@@ -112,7 +112,5 @@ If you get stuck on the permissions, remember the "Owner Only" rule:
 
 ✅ Automation: Learned how to enforce security compliance directly through Infrastructure as Code (IaC).
 
-🚀 Resources
-📂 View Challenge 01 Files
-
-🏠 Back to Full Repository
+## 🚀 Resources & Links
+* 📂 **[View Challenge 01 Files](https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/labs/01-local-sensitive-file/README.md)** — Explore the HCL configuration and solution
