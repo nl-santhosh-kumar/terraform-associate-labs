@@ -69,8 +69,9 @@ Don't want to install Terraform? No problem. Click the button below to launch a 
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/your-user/tf-time-lab?devcontainer_path=.devcontainer%2Fdevcontainer.json&open_file=main.tf)
 
+
 ### The Solution
-View the full code here: (https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/labs/04-time-static)
+View the full code here: [Challenge 04 Repo](https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/labs/04-time-static)
 
 
 ## 🧠 Knowledge Check

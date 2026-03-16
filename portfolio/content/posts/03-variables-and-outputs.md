@@ -39,7 +39,7 @@ The goal is to refactor our "Random Pet" lab. Instead of hardcoding the length o
 ---
 
 ## 🚀 The Solution
-View the full code here: [Challenge 03 Repo](https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/03-variables)
+View the full code here: [Challenge 03 Repo](https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/labs/03-variables)
 
 ## 1. Defining the Input
 Instead of hardcoding the prefix "Mrs", let's create a variable. This allows other team members to use your code without editing the logic.
