@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "name": "Active Lab Environment",
+      "path": "labs"
+    }
+  ],
+  "settings": {
+    "files.readonlyInclude": {
+      "portfolio/**": true 
+    },
+    "terraform.languageServer.indexingDirectory": "labs"
+  }
+}
