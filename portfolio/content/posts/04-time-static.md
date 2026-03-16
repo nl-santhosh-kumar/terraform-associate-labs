@@ -63,6 +63,12 @@ In this challenge, you will create a local text file that records its own birth 
    2. Content: *This file was sealed on: <time stamp>* (eg: This file was sealed on: 2026-03-16T09:57:46Z)
 
 
+## 🚀 Try it Yourself!
+
+Don't want to install Terraform? No problem. Click the button below to launch a free, pre-configured environment in your browser:
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/your-user/tf-time-lab?devcontainer_path=.devcontainer%2Fdevcontainer.json&open_file=main.tf)
+
 ### The Solution
 View the full code here: (https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/labs/04-time-static)
 
