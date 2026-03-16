@@ -42,6 +42,14 @@ paginate = 5  # Shows 5 challenges per page
 [frontmatter]
     date = ["date", "publishDate", "lastmod"]
 
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    style = "dracula" # You can change this to "dracula", "nord", or "solarized-dark"
+    noClasses = false
+
 [menu]
     [[menu.main]]
         identifier = "search"

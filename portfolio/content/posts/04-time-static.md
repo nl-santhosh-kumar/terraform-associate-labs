@@ -4,6 +4,13 @@ series: ["Terraform Associate 004"]
 tags: ["Terraform", "IaC", "DevOps"]
 summary: "Learn how to use the time_static resource to create persistent timestamps and avoid unnecessary resource drift."
 showToc: true
+quiz:
+  - question: "Why does time_static stay the same while timestamp() changes?"
+    options: ["A) time_static is more accurate.", "B) time_static saves its value in the .tfstate file; timestamp() does not.", "C) time_static only works on Linux."]
+    answer: "B"
+  - question: "You want to update the timestamp ONLY when the application version changes. What argument do you use?"
+    options: ["A) lifecycle { ignore_changes = [...] }", "B) depends_on", "C) triggers = { version = var.app_version }"]
+    answer: "B"
 ---
 ## 🧠 The Concept: Input vs. Output
 While standard functions like timestamp() change every single time you run terraform plan, time_static captures a moment in time and locks it into your state file until you explicitly tell it to change.
@@ -27,7 +34,7 @@ unix (Epoch seconds)
 Individual components like year, month, day.
 
 ## Quick Example
-```
+```hcl
 resource "time_static" "ami_update" {
   # This timestamp only changes if the AMI ID changes
   triggers = {
