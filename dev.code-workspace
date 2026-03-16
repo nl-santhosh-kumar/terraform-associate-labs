@@ -1,14 +1,15 @@
 {
   "folders": [
     {
-      "name": "Active Lab Environment",
+      "name": "LABS-ONLY-VIEW",
       "path": "labs"
     }
   ],
   "settings": {
-    "files.readonlyInclude": {
-      "portfolio/**": true 
-    },
-    "terraform.languageServer.indexingDirectory": "labs"
+    "terminal.integrated.cwd": "/workspaces/${containerWorkspaceFolderBasename}/labs",
+    "files.exclude": {
+      "portfolio/": true,
+      "dev.code-workspace": true
+    }
   }
 }
