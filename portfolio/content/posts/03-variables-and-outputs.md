@@ -69,7 +69,7 @@ output "my-random-pet-name" {
 
 ## 3. The Output Anatomy
 When you run terraform plan then you will see:
-```
+```hcl
 my-random-pet-name = {
   "id" = "Mrs.awaited.bullfrog"
   "keepers" = tomap(null) /* of string */
@@ -87,7 +87,7 @@ You likely used an output that exported the entire resource object. While useful
 
 ## 4. Refining the Output
 When you run terraform apply then you will see:
-```
+```hcl
 my-random-pet-name = {
   "id" = "Mrs.awaited.bullfrog"
   "keepers" = tomap(null) /* of string */

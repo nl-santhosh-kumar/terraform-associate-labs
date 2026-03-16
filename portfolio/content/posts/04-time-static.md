@@ -66,6 +66,13 @@ In this challenge, you will create a local text file that records its own birth 
 ### The Solution
 View the full code here: (https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/labs/04-time-static)
 
+
+## 🧠 Knowledge Check
+
+Test your understanding of Terraform Time Static before moving to the next lesson.
+
+{{< quiz >}}
+
 ## 📚 004 Exam: Official Documentation Reference
 
 To master the variables and outputs section of the **Terraform Associate (004)** exam, I utilized the following official resources:
