@@ -67,9 +67,8 @@ In this challenge, you will create a local text file that records its own birth 
 
 Don't want to install Terraform? No problem. Click the button below to launch a free, pre-configured environment in your browser:
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/your-user/your-repo?open_file=labs/04-time-static/main.tf)
+{{< lab_button user="your-user" repo="terraform-labs" path="labs/04-time-static/main.tf" name="Time Static" >}}
 
-https://codespaces.new/your-user/your-repo?open_file=labs/01-time-static/main.tf
 
 ### The Solution
 View the full code here: [Challenge 04 Repo](https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/labs/04-time-static)
