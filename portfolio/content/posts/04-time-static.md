@@ -13,7 +13,7 @@ The most common use case is for tagging or naming resources with a "Created At" 
 
 time_static stays put, keeping your plan clean.
 
-## Key Features
+## 🚀 Key Features
 Persistence: Once created, the rfc3339, unix, and other attributes remain constant.
 
 Triggers: You can force the time to "refresh" by using the triggers argument. If any value in the trigger map changes, the resource is recreated with a new current timestamp.
@@ -54,6 +54,10 @@ In this challenge, you will create a local text file that records its own birth 
 2. Create a static file  
    1. Name of the file: `vault.txt`.
    2. Content: *This file was sealed on: <time stamp>* (eg: This file was sealed on: 2026-03-16T09:57:46Z)
+
+
+### The Solution
+View the full code here: (https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/labs/04-time-static)
 
 ## 📚 004 Exam: Official Documentation Reference
 
