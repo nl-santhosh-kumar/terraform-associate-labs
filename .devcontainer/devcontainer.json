@@ -15,5 +15,5 @@
     }
   },
   "postCreateCommand": "terraform --version",
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/dev.code-workspace"
+  "workspaceFolder": "/workspaces/${containerWorkspaceFolderBasename}/dev.code-workspace"
 }
