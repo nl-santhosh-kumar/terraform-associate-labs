@@ -113,4 +113,4 @@ If you get stuck on the permissions, remember the "Owner Only" rule:
 ✅ Automation: Learned how to enforce security compliance directly through Infrastructure as Code (IaC).
 
 ## 🚀 Resources & Links
-* 📂 **[View Challenge 01 Files](https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/labs/01-local-sensitive-file/README.md)** — Explore the HCL configuration and solution
+* 📂 **[View Challenge 01 Files](https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/labs/01-local-senstive-file/README.md)** — Explore the HCL configuration and solution
