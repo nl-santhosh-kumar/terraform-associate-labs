@@ -2,6 +2,7 @@
 title: "Mastering time_static in Terraform"
 series: ["Terraform Associate 004"]
 tags: ["Terraform", "IaC", "DevOps"]
+weight: 40
 summary: "Learn how to use the time_static resource to create persistent timestamps and avoid unnecessary resource drift."
 showToc: true
 quiz:
