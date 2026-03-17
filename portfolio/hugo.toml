@@ -56,7 +56,6 @@ paginate = 5  # Shows 5 challenges per page
         name = "Search"
         url = "/search/"
         weight = 10
-    
     [[menu.main]]
         identifier = "about"
         name = "About"
