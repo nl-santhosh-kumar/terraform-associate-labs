@@ -1,0 +1,7 @@
+{{ $file := .Get 0 }}
+{{ if (fileExists $file) }}
+    {{ $content := readFile $file }}
+    {{ $content | markdownify }}
+{{ else }}
+    <p style="color:red;">Error: Lab file not found at {{ $file }}</p>
+{{ end }}
