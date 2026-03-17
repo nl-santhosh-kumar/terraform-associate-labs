@@ -37,6 +37,7 @@ Each lab is self-contained within the `/labs` directory:
 | **Lab 02** | [Random Pet](./labs/02-random-pet) | Random Local Provider | ⭐ (Beginner) |
 | **Lab 03** | [Variables](./labs/03-variables) | Reusable Variables | ⭐ (Beginner) |
 | **Lab 04** | [Time Static](./labs/04-time-static) | Time Static | ⭐ (Beginner) |
+| **Lab 05** | [Time Rotating](./labs/05-time-rotating) | Time Rotating | ⭐ (Beginner) |
 
 ---
 
