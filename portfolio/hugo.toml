@@ -67,13 +67,15 @@ paginate = 5  # Shows 5 challenges per page
         url = "/quiz/"
         weight = 5
 
-[security]
+ [security]
   [security.funcs]
     getenv = ['^HUGO_']
   [security.http]
     methods = ['(?i)GET|POST']
-  [security.path]
-    allow = ['..'] # This allows Hugo to read your lab folders
+    urls = ['.*']
+  [security.exec]
+    allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^npx$', '^postcss$']
+    osEnv = ['(?i)^((PATH|PATHEXT|APPDATA|TMP|TEMP|TERM)|(ASSETFS_HOSTNAME))$']   
 
 [taxonomies]
     category = "categories"
@@ -89,3 +91,11 @@ paginate = 5  # Shows 5 challenges per page
     showRemoteIcon = false
     # This ensures the search engine knows exactly where the index is
     searchIndex = "index.json"
+
+[module]
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+  [[module.mounts]]
+    source = "../labs"
+    target = "content/labs"
