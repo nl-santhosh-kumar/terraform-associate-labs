@@ -1,18 +1,31 @@
 {
-  "name": "Terraform Lab Environment",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "features": {
-    "ghcr.io/devcontainers/features/terraform:1": {
-      "version": "latest"
-    }
-  },
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "hashicorp.terraform",
-        "christian-kohler.path-intellisense"
-      ]
-    }
-  },
-  "postCreateCommand": "terraform --version"
+    "name": "Terraform Lab Environment",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+        "ghcr.io/devcontainers/features/terraform:1": {
+            "version": "latest"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "hashicorp.terraform",
+                "christian-kohler.path-intellisense"
+            ],
+            "settings": {
+                // 1. This hides the folders you don't want to see
+                "files.exclude": {
+                    "portfolio/": true,
+                    ".github/": true,
+                    "README.md": true,
+                    ".devcontainer/": true
+                },
+                // 2. This makes the terminal start in the labs folder
+                "terminal.integrated.cwd": "/workspaces/${containerWorkspaceFolderBasename}/labs",
+                // 3. This tells the Terraform extension to focus on the labs folder
+                "terraform.languageServer.indexingDirectory": "labs"
+            }
+        }
+    },
+    "postCreateCommand": "terraform --version"
 }

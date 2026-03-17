@@ -1,15 +1,16 @@
 {
   "folders": [
     {
-      "name": "LABS-ONLY-VIEW",
+      "name": "Terraform Labs",
       "path": "labs"
     }
   ],
   "settings": {
-    "terminal.integrated.cwd": "/workspaces/${containerWorkspaceFolderBasename}/labs",
+    "terminal.integrated.cwd": "/workspaces/terraform-associate-labs/labs",
     "files.exclude": {
       "portfolio/": true,
-      "dev.code-workspace": true
+      "*.code-workspace": true,
+      "README.md": true
     }
   }
 }
