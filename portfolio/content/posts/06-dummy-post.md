@@ -2,7 +2,7 @@
 title: "06 | Dummy Post"
 series: ["Terraform Associate 004"]
 tags: ["Terraform", "Security", "Lab"]
-weight: 30
+weight: 60
 showToc: true
 summary: "Moving away from hardcoded values to dynamic, variable-driven configurations."
 date: 2026-03-11
