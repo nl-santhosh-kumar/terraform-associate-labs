@@ -2,7 +2,7 @@ name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches: ["main"] # Ensure this matches your default branch name
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -17,7 +17,8 @@ concurrency:
 defaults:
   run:
     shell: bash
-    working-directory: ./portfolio # Change this if your Hugo folder is named differently
+    working-directory: ./portfolio 
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,12 +28,6 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-
-      # NEW: Setup Go (Required for Hugo Modules)
-      - name: Setup Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: '1.21'
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -46,7 +41,8 @@ jobs:
 
       - name: Build with Hugo
         run: |
-            hugo --gc --minify --cleanDestinationDir -D --baseURL "${{ steps.pages.outputs.base_url }}/"
+          # Added --buildFuture so your 2026 post actually renders
+          hugo --gc --minify --cleanDestinationDir -D --buildFuture --baseURL "${{ steps.pages.outputs.base_url }}/"
         working-directory: ./portfolio
 
       - name: Upload artifact

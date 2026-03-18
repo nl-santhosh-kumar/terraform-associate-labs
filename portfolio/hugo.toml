@@ -52,7 +52,9 @@ Whether you are preparing for the **HashiCorp Certified: Terraform Associate (00
     lineNos = true
     style = "dracula" # You can change this to "dracula", "nord", or "solarized-dark"
     noClasses = false
-
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [menu]
     [[menu.main]]
