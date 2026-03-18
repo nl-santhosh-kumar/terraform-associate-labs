@@ -88,30 +88,3 @@ Whether you are preparing for the **HashiCorp Certified: Terraform Associate (00
     showRemoteIcon = false
     # This ensures the search engine knows exactly where the index is
     searchIndex = "index.json"
-
-[security]
-  # Keep whatever was already here (like for Goldmark or exec)
-  [security.funcs]
-    # Add this line to the existing funcs block
-    readFile = ['.*']
-
-  [security.http]
-    methods = ['(?i)GET']
-    urls = ['.*']
-  [security.exec]
-    allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^npx$', '^postcss$']
-    osEnv = ['(?i)^((PATH|PATHEXT|APPDATA|TMP|TEMP|TERM)|(ASSETFS_HOSTNAME))$']
-  [security.module]
-    allowMountDirectives = true
-
-  
-  [module]
-  # You must define the default content folder first!
-  [[module.mounts]]
-    source = "content"
-    target = "content"
-
-  # Then mount your external 'labs' folder
-  [[module.mounts]]
-    source = "../labs"  # Path to your labs folder relative to project root
-    target = "content/labs"
