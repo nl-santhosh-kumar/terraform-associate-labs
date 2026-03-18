@@ -14,7 +14,6 @@ buttons:
     weight: 2
 ---
 
-
 ## 🛡️ The Concept: What is 'Sensitive'?
 
 Standard resources like `local_file` can accidentally leak secrets (passwords, keys, tokens) into your terminal logs. 

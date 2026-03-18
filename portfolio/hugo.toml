@@ -28,8 +28,6 @@ Whether you are preparing for the **HashiCorp Certified: Terraform Associate (00
 
 **Stop clicking, start coding.** Browse the latest guides below or search for a specific resource.
     """
-
-
     [params.profileMode]
         enabled = false
         title = "Terraform Associate Labs"
@@ -54,9 +52,7 @@ Whether you are preparing for the **HashiCorp Certified: Terraform Associate (00
     lineNos = true
     style = "dracula" # You can change this to "dracula", "nord", or "solarized-dark"
     noClasses = false
-  [markup.goldmark]
-      [markup.goldmark.renderer]
-        unsafe = true  # This allows HTML inside your Markdown files   
+
 
 [menu]
     [[menu.main]]
@@ -80,7 +76,7 @@ Whether you are preparing for the **HashiCorp Certified: Terraform Associate (00
     tag = "tags"
 
 [outputs]
-    home = ["HTML", "RSS", "JSON"] # This generates the search index
+    home = ["HTML", "JSON"] # This generates the search index
 
 [params.search]
     enable = true
