@@ -1,10 +1,12 @@
 {{ $file := .Get "file" }}
-{{ if (fileExists (printf "content/labs/%s" $file)) }}
-    <div class="lab-content">
-        {{ readFile (printf "content/labs/%s" $file) | markdownify }}
-    </div>
+{{ $path := printf "content/labs/%s" $file }}
+
+{{ if (fileExists $path) }}
+    <article class="lab-container">
+        {{ readFile $path | markdownify }}
+    </article>
 {{ else }}
-    <p style="color: red;">
-        Error: Hugo cannot find the file at: <strong>content/labs/{{ $file }}</strong>
-    </p>
+    <div class="ui-alert-error">
+        <strong>Missing Lab File:</strong> <code>{{ $path }}</code>
+    </div>
 {{ end }}
