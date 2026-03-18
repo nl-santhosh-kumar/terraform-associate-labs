@@ -1,3 +1,6 @@
 [submodule "portfolio/themes/PaperMod"]
 	path = portfolio/themes/PaperMod
 	url = https://github.com/adityatelange/hugo-PaperMod.git
+[submodule "portfolio/themes/Paper"]
+	path = portfolio/themes/Paper
+	url = https://github.com/adityatelange/hugo-PaperMod.git
