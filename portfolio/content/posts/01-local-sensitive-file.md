@@ -1,5 +1,5 @@
 ---
-title: "01: Securing Data with Local Sensitive Files"
+title: "01 | Securing Data with Local Sensitive Files"
 tags: ["Terraform", "Security", "Lab"]
 series: ["Terraform Associate 004"]
 description: "Mastering file permissions and console redaction in Terraform."

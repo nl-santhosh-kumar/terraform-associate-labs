@@ -1,5 +1,5 @@
 ---
-title: "03: Making Code Reusable with Variables"
+title: "03 | Making Code Reusable with Variables"
 series: ["Terraform Associate 004"]
 tags: ["Terraform", "Security", "Lab"]
 weight: 30

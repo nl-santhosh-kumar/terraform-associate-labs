@@ -1,5 +1,5 @@
 ---
-title: "Generating Dynamic Resources with Random Pet"
+title: "02 | Generating Dynamic Resources with Random Pet"
 series: ["Terraform Associate 004"]
 tags: ["Terraform", "Security", "Lab"]
 weight: 20
