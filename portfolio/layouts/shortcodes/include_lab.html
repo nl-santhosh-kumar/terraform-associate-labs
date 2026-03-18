@@ -1,21 +1,22 @@
-{{ $file := .Get 0 }}
-{{/* We check the path relative to the PROJECT ROOT */}}
-{{ $verifyingPath := printf "content/labs/%s" $file }}
+<div style="border: 2px dashed #007acc; padding: 10px; margin: 20px 0;">
+    <p><strong>Shortcode Status:</strong> Active</p>
+    {{ $path := .Get 0 }}
+    <p><strong>Attempting to find:</strong> <code>{{ $path }}</code></p>
 
-{{ if (fileExists $verifyingPath) }}
-    <div class="lab-content">
-        {{ readFile $verifyingPath | markdownify }}
-    </div>
-{{ else }}
-    <div style="color: orange; border: 1px solid orange; padding: 10px;">
-        <strong>Mount Debug:</strong><br>
-        Searching for: <code>{{ $verifyingPath }}</code><br>
-        Current Directory: <code>{{ os.Stat "." }}</code><br>
-        {{/* Only try to read the directory if it actually exists to avoid the ERROR */}}
-        {{ if (fileExists "content/labs") }}
-            Labs folder found virtually.
-        {{ else }}
-            <span style="color:red;">Error:  ${{ $verifyingPath }} content/labs is not mounted correctly.</span>
-        {{ end }}
-    </div>
-{{ end }}
+    {{ $page := .Site.GetPage $path }}
+    
+    {{ if $page }}
+        <p style="color: green;">✅ Hugo found the page!</p>
+        <div style="background: #f9f9f9; padding: 10px; border: 1px solid #ccc;">
+            {{ $page.RawContent | markdownify }}
+        </div>
+    {{ else }}
+        <p style="color: red;">❌ Hugo could NOT find a page at that path.</p>
+        <p><strong>Available Pages in 'labs' section:</strong></p>
+        <ul>
+            {{ range (where .Site.RegularPages "Section" "labs") }}
+                <li><code>{{ .Path }}</code></li>
+            {{ end }}
+        </ul>
+    {{ end }}
+</div>

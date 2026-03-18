@@ -14,4 +14,4 @@ buttons:
     weight: 2
 ---
 
-{{< include_lab "labs/01-local-sensitive-file/README.md" >}}
+Hey, Am I loading the content

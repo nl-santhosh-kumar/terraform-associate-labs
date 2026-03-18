@@ -1,0 +1,4 @@
+<div style="background: #eee; padding: 10px; border: 1px solid #333;">
+    <strong>Current Directory:</strong> {{ os.Getwd }} <br>
+    <strong>Looking for Lab 01:</strong> {{ if (fileExists "../labs/01-local-sensitive-file/README.md") }} ✅ FOUND {{ else }} ❌ NOT FOUND {{ end }}
+  </div>

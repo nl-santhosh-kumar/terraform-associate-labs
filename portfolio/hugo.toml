@@ -105,3 +105,13 @@ Whether you are preparing for the **HashiCorp Certified: Terraform Associate (00
     allowMountDirectives = true
 
   
+  [module]
+  # You must define the default content folder first!
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+
+  # Then mount your external 'labs' folder
+  [[module.mounts]]
+    source = "../labs"  # Path to your labs folder relative to project root
+    target = "content/labs"
