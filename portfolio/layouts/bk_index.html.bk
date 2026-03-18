@@ -5,3 +5,4 @@
         {{- partial "index_list.html" . -}}
     {{- end -}}
 {{- end -}}
+

@@ -9,6 +9,12 @@
             <ul id="customResults" class="search-results" style="display: none;"></ul>
         </div>
 
+        <div class="suggested-searches">
+            <span>Try searching for:</span>
+            <div class="chips-container">
+            </div>
+        </div>
+
        <div class="button-container">
         {{- $learningPath := (where site.RegularPages "Section" "posts").ByWeight -}}
         {{- $startNode := index $learningPath 0 -}}
