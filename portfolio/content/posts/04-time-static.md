@@ -13,5 +13,3 @@ quiz:
     options: ["A) lifecycle { ignore_changes = [...] }", "B) depends_on", "C) triggers = { version = var.app_version }"]
     answer: "B"
 ---
-
-{{< include_lab "04-time-static/_index.md" >}}

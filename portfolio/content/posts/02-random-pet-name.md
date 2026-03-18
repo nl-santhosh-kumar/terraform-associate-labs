@@ -13,4 +13,3 @@ buttons:
     url: "https://github.com/nl-santhosh-kumar/terraform-associate-labs"
     weight: 2
 ---
-{{< include_lab "labs/02-random-pet/README.me" >}}
