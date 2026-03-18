@@ -1,7 +1,7 @@
 ---
 title: "04 | Use the time_static resource to create persistent timestamps"
 series: ["Terraform Associate 004"]
-tags: ["Terraform", "IaC", "DevOps"]
+tags: ["Terraform", "Security", "Lab"]
 weight: 40
 showToc: true
 summary: "Learn how to use the time_static resource to create persistent timestamps and avoid unnecessary resource drift."
@@ -14,6 +14,7 @@ quiz:
     options: ["A) lifecycle { ignore_changes = [...] }", "B) depends_on", "C) triggers = { version = var.app_version }"]
     answer: "B"
 ---
+
 
 ## 🧠 The Concept: Input vs. Output
 While standard functions like timestamp() change every single time you run terraform plan, time_static captures a moment in time and locks it into your state file until you explicitly tell it to change.
