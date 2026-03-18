@@ -46,9 +46,7 @@ jobs:
 
       - name: Build with Hugo
         run: |
-          # Debug: List files to ensure 'labs' exists one level up
-          ls -R ..
-          hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+            hugo --gc --minify --cleanDestinationDir -D --baseURL "${{ steps.pages.outputs.base_url }}/"
         working-directory: ./portfolio
 
       - name: Upload artifact
