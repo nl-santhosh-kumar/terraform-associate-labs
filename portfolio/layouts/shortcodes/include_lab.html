@@ -1,12 +1,12 @@
 {{ $file := .Get "file" }}
-{{ $path := printf "content/labs/%s" $file }}
+{{ $path := printf "labs/%s" $file }}
 
-{{ if (fileExists $path) }}
-    <article class="lab-container">
-        {{ readFile $path | markdownify }}
-    </article>
-{{ else }}
-    <div class="ui-alert-error">
-        <strong>Missing Lab File:</strong> <code>{{ $path }}</code>
+{{ if (fileExists (printf "content/%s" $path)) }}
+    <div class="lab-content">
+        {{ readFile (printf "content/%s" $path) | markdownify }}
     </div>
+{{ else }}
+    <p style="color: red;">
+        Error: Cannot find file at <strong>content/{{ $path }}</strong>
+    </p>
 {{ end }}

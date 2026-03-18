@@ -96,24 +96,26 @@ Whether you are preparing for the **HashiCorp Certified: Terraform Associate (00
     # This ensures the search engine knows exactly where the index is
     searchIndex = "index.json"
 
-[os]
-  [os.allowedPaths]
-    # This allows Hugo to read the parent directory
-    # '..' means one level up from your Hugo site folder
-    ".." = [ "^\\.\\.$", "^\\.\\.[\\/].*$" ]
+[security]
+  [security.funcs]
+    getenv = ['^HUGO_']
+  [security.http]
+    methods = ['(?i)GET']
+  [security.exec]
+    allow = ['^go$', '^npx$', '^postcss$']
+  
+  # THIS IS THE KEY PART:
+  # It tells Hugo it's allowed to read files from the parent directory
+  [security.funcs.readFile]
+    allow = ['.*']
 
 [module]
-  # Point to the REPO, not the website URL
-  [[module.imports]]
-    path = "github.com/nl-santhosh-kumar/terraform-associate-labs"
-
-  # 1. Mount your local content so it doesn't disappear
+  # 1. You MUST mount the default content folder first
   [[module.mounts]]
     source = "content"
     target = "content"
 
-  # 2. Map the EXTERNAL files into your LOCAL content/labs folder
-  # 'source' here refers to the folder INSIDE the terraform-associate-labs repo
+  # 2. Mount the labs folder from the repo root (one level up)
   [[module.mounts]]
-    source = "labs"        # The folder name in the remote repo
-    target = "content/labs" # Where it appears in your Hugo site
+    source = "../labs"
+    target = "content/labs"
