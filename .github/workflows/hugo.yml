@@ -43,7 +43,7 @@ jobs:
 
       - name: Build with Hugo
         run: |
-          hugo --gc --minify --cleanDestinationDir -D --buildFuture --baseURL "${{ steps.pages.outputs.base_url }}/"
+          hugo --gc --minify --cleanDestinationDir -D --buildFuture
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
