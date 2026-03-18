@@ -44,17 +44,10 @@ jobs:
         id: pages
         uses: actions/configure-pages@v4
 
-      # NEW: Fetch Hugo Modules
-      - name: Install dependencies
-        run: |
-          hugo mod get -u
-          hugo mod tidy
-        working-directory: ./portfolio
-
       - name: Build with Hugo
         run: |
-          hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
-        working-directory: ./portfolio # Tells Hugo where the config file is
+          hugo --gc --minify
+        working-directory: ./portfolio
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

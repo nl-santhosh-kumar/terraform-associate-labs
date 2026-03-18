@@ -1,12 +1,26 @@
-{{ $file := .Get "file" }}
-{{ $path := printf "labs/%s" $file }}
+{{ $file := .Get 0 }}
+{{ $virtualPath := printf "content/labs/%s" $file }}
+{{ $workingDir := os.Stat "." }}
 
-{{ if (fileExists (printf "content/%s" $path)) }}
-    <div class="lab-content">
-        {{ readFile (printf "content/%s" $path) | markdownify }}
-    </div>
-{{ else }}
-    <p style="color: red;">
-        Error: Cannot find file at <strong>content/{{ $path }}</strong>
-    </p>
+<div style="background: #222; color: #00ff00; padding: 20px; border: 2px solid #00ff00; font-family: monospace; margin: 20px 0;">
+    <h3>-- HUGO DEBUG CONSOLE --</h3>
+    <strong>1. Requested File:</strong> {{ $file }}<br>
+    <strong>2. Looking at Virtual Path:</strong> {{ $virtualPath }}<br>
+    <strong>3. File Exists in Virtual FS?</strong> 
+       <span style="color:{{ if (fileExists $virtualPath) }}#00ff00{{ else }}#ff0000{{ end }};">
+           {{ if (fileExists $virtualPath) }}YES{{ else }}NO{{ end }}
+       </span><br>
+    
+    <hr style="border: 1px solid #444;">
+    
+    <strong>4. Directory Peek (content/labs/):</strong><br>
+    <ul>
+    {{ range (readDir "content/labs") }}
+        <li>{{ if .IsDir }}[DIR]{{ else }}[FILE]{{ end }} {{ .Name }}</li>
+    {{ end }}
+    </ul>
+</div>
+
+{{ if (fileExists $virtualPath) }}
+    <div class="lab-content">{{ readFile $virtualPath | markdownify }}</div>
 {{ end }}

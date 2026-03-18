@@ -71,16 +71,6 @@ Whether you are preparing for the **HashiCorp Certified: Terraform Associate (00
         url = "/quiz/"
         weight = 5
 
- [security]
-  [security.funcs]
-    getenv = ['^HUGO_']
-  [security.http]
-    methods = ['(?i)GET|POST']
-    urls = ['.*']
-  [security.exec]
-    allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^npx$', '^postcss$']
-    osEnv = ['(?i)^((PATH|PATHEXT|APPDATA|TMP|TEMP|TERM)|(ASSETFS_HOSTNAME))$']   
-
 [taxonomies]
     category = "categories"
     series = "series" # This allows you to group labs as "Terraform Associate Series"
@@ -97,17 +87,17 @@ Whether you are preparing for the **HashiCorp Certified: Terraform Associate (00
     searchIndex = "index.json"
 
 [security]
+  # Keep whatever was already here (like for Goldmark or exec)
   [security.funcs]
-    getenv = ['^HUGO_']
+    # Add this line to the existing funcs block
+    readFile = ['.*']
+
   [security.http]
     methods = ['(?i)GET']
+    urls = ['.*']
   [security.exec]
-    allow = ['^go$', '^npx$', '^postcss$']
-  
-  # THIS IS THE KEY PART:
-  # It tells Hugo it's allowed to read files from the parent directory
-  [security.funcs.readFile]
-    allow = ['.*']
+    allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^npx$', '^postcss$']
+    osEnv = ['(?i)^((PATH|PATHEXT|APPDATA|TMP|TEMP|TERM)|(ASSETFS_HOSTNAME))$']   
 
 [module]
   # 1. You MUST mount the default content folder first

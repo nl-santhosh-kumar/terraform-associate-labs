@@ -14,4 +14,4 @@ quiz:
     answer: "B"
 ---
 
-{{< include_lab "04-time-static/README.ME" >}}
+{{< include_lab "04-time-static/README.md" >}}
