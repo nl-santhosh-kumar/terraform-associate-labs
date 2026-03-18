@@ -3,6 +3,8 @@ name: Deploy Hugo site to Pages
 on:
   push:
     branches: ["main"]
+  pull_request:            # Added for your PR workflow
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -41,22 +43,21 @@ jobs:
 
       - name: Build with Hugo
         run: |
-          # Added --buildFuture so your 2026 post actually renders
           hugo --gc --minify --cleanDestinationDir -D --buildFuture --baseURL "${{ steps.pages.outputs.base_url }}/"
-        working-directory: ./portfolio
-
-  deploy:
-      environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-        needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./portfolio/public
+
+  deploy:
+    # This job only runs on the main branch after a successful build/merge
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
