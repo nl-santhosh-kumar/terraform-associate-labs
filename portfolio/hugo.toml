@@ -86,3 +86,6 @@ Whether you are preparing for the **HashiCorp Certified: Terraform Associate (00
     showRemoteIcon = false
     # This ensures the search engine knows exactly where the index is
     searchIndex = "index.json"
+
+canonifyURLs = true
+relativeURLs = false
