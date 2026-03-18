@@ -1,26 +1,21 @@
 {{ $file := .Get 0 }}
-{{ $virtualPath := printf "content/labs/%s" $file }}
-{{ $workingDir := os.Stat "." }}
+{{/* We check the path relative to the PROJECT ROOT */}}
+{{ $verifyingPath := printf "content/labs/%s" $file }}
 
-<div style="background: #222; color: #00ff00; padding: 20px; border: 2px solid #00ff00; font-family: monospace; margin: 20px 0;">
-    <h3>-- HUGO DEBUG CONSOLE --</h3>
-    <strong>1. Requested File:</strong> {{ $file }}<br>
-    <strong>2. Looking at Virtual Path:</strong> {{ $virtualPath }}<br>
-    <strong>3. File Exists in Virtual FS?</strong> 
-       <span style="color:{{ if (fileExists $virtualPath) }}#00ff00{{ else }}#ff0000{{ end }};">
-           {{ if (fileExists $virtualPath) }}YES{{ else }}NO{{ end }}
-       </span><br>
-    
-    <hr style="border: 1px solid #444;">
-    
-    <strong>4. Directory Peek (content/labs/):</strong><br>
-    <ul>
-    {{ range (readDir "content/labs") }}
-        <li>{{ if .IsDir }}[DIR]{{ else }}[FILE]{{ end }} {{ .Name }}</li>
-    {{ end }}
-    </ul>
-</div>
-
-{{ if (fileExists $virtualPath) }}
-    <div class="lab-content">{{ readFile $virtualPath | markdownify }}</div>
+{{ if (fileExists $verifyingPath) }}
+    <div class="lab-content">
+        {{ readFile $verifyingPath | markdownify }}
+    </div>
+{{ else }}
+    <div style="color: orange; border: 1px solid orange; padding: 10px;">
+        <strong>Mount Debug:</strong><br>
+        Searching for: <code>{{ $verifyingPath }}</code><br>
+        Current Directory: <code>{{ os.Stat "." }}</code><br>
+        {{/* Only try to read the directory if it actually exists to avoid the ERROR */}}
+        {{ if (fileExists "content/labs") }}
+            Labs folder found virtually.
+        {{ else }}
+            <span style="color:red;">Error:  ${{ $verifyingPath }} content/labs is not mounted correctly.</span>
+        {{ end }}
+    </div>
 {{ end }}

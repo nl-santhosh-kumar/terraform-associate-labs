@@ -54,6 +54,9 @@ Whether you are preparing for the **HashiCorp Certified: Terraform Associate (00
     lineNos = true
     style = "dracula" # You can change this to "dracula", "nord", or "solarized-dark"
     noClasses = false
+  [markup.goldmark]
+      [markup.goldmark.renderer]
+        unsafe = true  # This allows HTML inside your Markdown files   
 
 [menu]
     [[menu.main]]
@@ -97,15 +100,8 @@ Whether you are preparing for the **HashiCorp Certified: Terraform Associate (00
     urls = ['.*']
   [security.exec]
     allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^npx$', '^postcss$']
-    osEnv = ['(?i)^((PATH|PATHEXT|APPDATA|TMP|TEMP|TERM)|(ASSETFS_HOSTNAME))$']   
+    osEnv = ['(?i)^((PATH|PATHEXT|APPDATA|TMP|TEMP|TERM)|(ASSETFS_HOSTNAME))$']
+  [security.module]
+    allowMountDirectives = true
 
-[module]
-  # 1. You MUST mount the default content folder first
-  [[module.mounts]]
-    source = "content"
-    target = "content"
-
-  # 2. Mount the labs folder from the repo root (one level up)
-  [[module.mounts]]
-    source = "../labs"
-    target = "content/labs"
+  
