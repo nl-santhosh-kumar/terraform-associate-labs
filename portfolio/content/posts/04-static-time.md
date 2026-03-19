@@ -5,7 +5,6 @@ tags: ["Terraform", "Security", "Lab"]
 weight: 40
 showToc: true
 summary: "Learn how to use the time_static resource to create persistent timestamps and avoid unnecessary resource drift."
-date: 2026-03-11
 quiz:
   - question: "Why does time_static stay the same while timestamp() changes?"
     options: ["A) time_static is more accurate.", "B) time_static saves its value in the .tfstate file; timestamp() does not.", "C) time_static only works on Linux."]

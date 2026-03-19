@@ -5,7 +5,6 @@ tags: ["Terraform", "Security", "Lab"]
 weight: 30
 showToc: true
 summary: "Moving away from hardcoded values to dynamic, variable-driven configurations."
-date: 2026-03-11
 quiz:
   - question: "Which notation path do you use?"
     options: ["A) random_pet.id", "B) random_pet.my-pet.id"]

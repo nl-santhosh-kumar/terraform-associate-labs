@@ -6,7 +6,6 @@ weight: 10
 showToc: true
 summary: "Mastering file permissions and console redaction in Terraform."
 showButtons: true
-date: 2026-03-11
 buttons:
   - name: "📂 View Solution Files"
     url: "https://github.com/nl-santhosh-kumar/terraform-associate-labs/tree/main/challenges/01-local-provider"
