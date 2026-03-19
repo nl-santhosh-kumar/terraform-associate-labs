@@ -1,5 +1,5 @@
 ---
-title: "🏗️ Master Terraform: The Expression Hierarchy"
+title: "06 | 🏗️ Master Terraform: The Expression Hierarchy"
 series: ["Terraform Associate 004"]
 tags: ["Terraform", "IaC", "DevOps"]
 summary: "Learn What are the Infrastructure Connective Tissue"
