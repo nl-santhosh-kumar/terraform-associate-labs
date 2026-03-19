@@ -24,6 +24,7 @@ resource "aws_instance" "app" {
     Name = "server-${var.environment}" 
   }
 }
+```
 
 Pro Tip: You can also use here docs (<<-EOT) for multi-line strings, which is great for cloud-init scripts.
 
