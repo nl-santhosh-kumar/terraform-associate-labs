@@ -1,6 +1,6 @@
 baseurl = "https://nl-santhosh-kumar.github.io/terraform-associate-labs/"
 languageCode = 'en-us'
-title = 'Santhosh | Terraform Labs'
+title = 'Mastering Terraform 004'
 theme = 'PaperMod'
 paginate = 5  # Shows 5 challenges per page
 
@@ -19,15 +19,25 @@ paginate = 5  # Shows 5 challenges per page
     ShowPostNavLinks = true
     
     # This adds a nice header ABOVE your list of posts
-    [params.homeInfoParams]
-        Title = "Mastering Terraform 004 🚀"
-        Content = """
+   [params.homeInfoParams]
+    Title = "Mastering Terraform 004 🚀"
+    Content = """
 Welcome to your primary resource for mastering **Infrastructure as Code**. 
 
 Whether you are preparing for the **HashiCorp Certified: Terraform Associate (004)** exam or looking to scale production-grade infrastructure, you’ll find deep dives into provider logic, state management, and modular design here. 
 
 **Stop clicking, start coding.** Browse the latest guides below or search for a specific resource.
-    """
+
+---
+<div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+  <a href="/labs/">
+    <img src="https://img.shields.io/badge/Exam-Terraform_Associate_004-623CE4?style=for-the-badge&logo=terraform" alt="Terraform Labs">
+  </a>
+  <a href="https://github.com/codespaces/new?repo=YOUR_GITHUB_USERNAME/YOUR_REPO_NAME">
+    <img src="https://github.com/codespaces/badge.svg" alt="Practice with GitHub Codespaces" style="height: 28px;">
+  </a>
+</div>
+"""
     [params.profileMode]
         enabled = false
         title = "Terraform Associate Labs"
