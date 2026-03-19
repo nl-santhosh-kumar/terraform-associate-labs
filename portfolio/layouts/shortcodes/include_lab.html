@@ -1,0 +1,7 @@
+{{ $file := .Get 0 }}
+{{ $path := (printf "labs/%s" $file) }}
+{{ with resources.Get $path }}
+  {{ .Content | markdownify }}
+{{ else }}
+  <p style="color: red;">Mount failed: Cannot find {{ $path }} in assets.</p>
+{{ end }}

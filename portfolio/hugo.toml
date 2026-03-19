@@ -89,3 +89,11 @@ Whether you are preparing for the **HashiCorp Certified: Terraform Associate (00
 
 canonifyURLs = true
 relativeURLs = false
+
+[[module.mounts]]
+  source = "content"
+  target = "content"
+
+[[module.mounts]]
+  source = "../labs"
+  target = "assets/labs"
