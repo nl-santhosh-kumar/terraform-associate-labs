@@ -1,0 +1,4 @@
+Service Name: gateway
+Port:         80
+Environment:  PROD
+Labels:       networking, public

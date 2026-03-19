@@ -1,0 +1,4 @@
+Service Name: auth-api
+Port:         8080
+Environment:  PROD
+Labels:       security, identity
