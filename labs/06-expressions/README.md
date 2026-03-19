@@ -56,6 +56,11 @@ This example perfectly demonstrates the Expression Hierarchy:
 * **Resource Attributes (The final output)**
 
 ## How to run it:
+
+Don't want to install Terraform? No problem. Click the button below to launch a free, pre-configured environment in your browser:
+
+{{< lab_button user="your-user" repo="terraform-labs" path="labs/06-expressions/main.tf" name="Expressions" >}}
+
 * **Run terraform init (this downloads the local provider).**
 
 * **Run terraform apply.**
