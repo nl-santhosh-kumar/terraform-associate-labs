@@ -3,5 +3,5 @@
 {{ with resources.Get $path }}
   {{ .Content | markdownify }}
 {{ else }}
-  <p style="color: red;">Mount failed: Cannot find {{ $path }} in assets.</p>
+  <p style="color: red;">Error: Could not find {{ $path }} in the mounted labs folder.</p>
 {{ end }}
