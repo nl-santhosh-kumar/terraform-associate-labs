@@ -42,5 +42,22 @@ This is where Terraform gets its power. You can transform one collection (like a
 * **To create a list:** `[for s in var.list : upper(s)]` 
 * **To create a map:** `{for k, v in var.map : k => upper(v)}` 
 
+## 🚀 Try it Yourself!
 
+To make this practical without requiring a cloud account, we will use a Local File use case. This scenario simulates creating configuration files for different "microservices" using a Map of Objects.
+This example perfectly demonstrates the Expression Hierarchy:
 
+* **Variables/Locals (The data)**
+
+* **For Expression (The transformation)**
+
+* **Meta-arguments (for_each)**
+
+* **Resource Attributes (The final output)**
+
+## How to run it:
+* **Run terraform init (this downloads the local provider).**
+
+* **Run terraform apply.**
+
+* **Check your folder—you'll see a new /configs directory with three files inside!**
