@@ -40,8 +40,8 @@ Now that, we have a S3 bucket, lets understand about the blocking public access
 
 # Locking the Front Door | Make the S3 Bucket Private
 Making the S3 bucket private is good but to make it impossible to be public makes it awesome. Even if someone tries to change it to public, the resource will override and block it. 
-[Read More]https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block
-[Read more about blocking public access to your amazon s3] https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html
+* 📂 [Read More About S3 Public Access Block](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block)
+* 📂 [Read more about blocking public access to your amazon s3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
 
 ```hcl 
 ## Create a resource to restrict public access to the S3 bucket
@@ -68,5 +68,7 @@ When using OAC, a typical request and response workflow will be:
 ![Create Distribution](image.png)
 Once the distribution is successfully created, you must update the s3 bucket policy. Before that, lets create OAC with terraform.
 
-![Read More](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution) 
+* 📂 **[Read More About Cloudfront Distribution](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution)** 
+* 📂 **[Cloudfront Distribution | Developer Guide](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html)** 
+
 Note: CloudFront distributions take about 15 minutes to reach a deployed state after creation or modification. During this time, deletes to resources will be blocked. If you need to delete a distribution that is enabled and you do not want to wait, you need to use the retain_on_delete flag.
