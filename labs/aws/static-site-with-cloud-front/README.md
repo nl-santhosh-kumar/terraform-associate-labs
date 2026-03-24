@@ -68,3 +68,4 @@ When using OAC, a typical request and response workflow will be:
 ![Create Distribution](image.png)
 Once the distribution is successfully created, you must update the s3 bucket policy. Before that, lets create OAC with terraform.
 
+![Read More](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution) 
