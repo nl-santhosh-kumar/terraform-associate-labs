@@ -54,3 +54,17 @@ resource "aws_s3_bucket_public_access_block" "static_site_public_access_block" {
   restrict_public_buckets = true # Restrict public bucket policies to prevent unauthorized access
 }
 ```
+
+# Modern Handshake (CloudFront OAC)
+Amazon CloudFront is a global content delivery network that securely delivers applications, websites, videos, and APIs to viewers across the globe in milliseconds.  Leverage CloudFront’s origin access identity (OAI) to secures S3 origin access to CloudFront only.
+When using OAC, a typical request and response workflow will be:
+
+1. A client sends HTTP or HTTPS requests to CloudFront
+2. CloudFront edge locations receive the requests. If the requested object is not already cached, CloudFront signs the requests using OAC signing protocol
+3. S3 origins authenticate, authorize, or deny the requests.
+4. When configuring OAC,  “Do not sign requests”, “Sign requests”, and sign requests. For this case, do not choose, Do not override authorization header.
+
+# Configuring OAC when creating a new CloudFront distribution
+![Create Distribution](image.png)
+Once the distribution is successfully created, you must update the s3 bucket policy. Before that, lets create OAC with terraform.
+
