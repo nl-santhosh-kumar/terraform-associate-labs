@@ -69,3 +69,4 @@ When using OAC, a typical request and response workflow will be:
 Once the distribution is successfully created, you must update the s3 bucket policy. Before that, lets create OAC with terraform.
 
 ![Read More](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution) 
+Note: CloudFront distributions take about 15 minutes to reach a deployed state after creation or modification. During this time, deletes to resources will be blocked. If you need to delete a distribution that is enabled and you do not want to wait, you need to use the retain_on_delete flag.
