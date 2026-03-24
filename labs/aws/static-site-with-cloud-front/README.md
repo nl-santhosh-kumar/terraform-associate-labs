@@ -64,6 +64,16 @@ When using OAC, a typical request and response workflow will be:
 3. S3 origins authenticate, authorize, or deny the requests.
 4. When configuring OAC,  “Do not sign requests”, “Sign requests”, and sign requests. For this case, do not choose, Do not override authorization header.
 
+# Create a Cloudfront Distribution
+Below are the details required to create a cloud front distribution
+1. Choose a plan & Distribution Type
+2. Distribution Name, Type and Route 53 Integration
+3. Defining the Origin S3 Bucket & Path 
+4. Settings (Allow Private S3 bucket access to cloudfront)
+5. Security Handshake Origin Settings
+6. Cache & Behavior Settings
+7. Web Application Firewall 
+
 # Configuring OAC when creating a new CloudFront distribution
 ![Create Distribution](image.png)
 Once the distribution is successfully created, you must update the s3 bucket policy. Before that, lets create OAC with terraform.
