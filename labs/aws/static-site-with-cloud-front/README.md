@@ -36,3 +36,21 @@ Remember:
 * Bucket name must be lowercase and less than or equal to 63 characters in length.
 * **force_destroy** - (optional, default = false): Boolean that indicates all object (including any locked objects) should be deleted from the bucket when the bucket is destroyed so that the bucket can be destroyed without error. 
 
+Now that, we have a S3 bucket, lets understand about the blocking public access
+
+# Locking the Front Door | Make the S3 Bucket Private
+Making the S3 bucket private is good but to make it impossible to be public makes it awesome. Even if someone tries to change it to public, the resource will override and block it. 
+[Read More]https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block
+[Read more about blocking public access to your amazon s3] https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html
+
+```hcl 
+## Create a resource to restrict public access to the S3 bucket
+resource "aws_s3_bucket_public_access_block" "static_site_public_access_block" {
+  bucket = aws_s3_bucket.static_site.id # Reference the S3 bucket created above
+
+  block_public_acls       = true # Block public ACLs (Access Control Lists) to prevent unauthorized access
+  block_public_policy     = true # Block public bucket policies to prevent unauthorized access
+  ignore_public_acls      = true # Ignore public ACLs to prevent unauthorized access
+  restrict_public_buckets = true # Restrict public bucket policies to prevent unauthorized access
+}
+```
