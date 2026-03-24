@@ -1,5 +1,5 @@
 ---
-title: "06 | Conditional Statements in Terraform"
+title: "07 | Conditional Statements in Terraform"
 series: ["Terraform Associate 004"]
 tags: ["Terraform", "IaC", "DevOps"]
 summary: "Learn How to use conditional statements in terraform"

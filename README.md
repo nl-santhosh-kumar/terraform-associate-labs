@@ -39,6 +39,7 @@ Each lab is self-contained within the `/labs` directory:
 | **Lab 04** | [Time Static](./labs/04-time-static) | Time Static | ⭐ (Beginner) |
 | **Lab 05** | [Time Rotating](./labs/05-time-rotating) | Time Rotating | ⭐ (Beginner) |
 | **Lab 06** | [Expressions](./labs/06-expressions) | Express | ⭐ (Beginner) |
+| **Lab 07** | [Conditional Statement](./labs/07-conditional-statements) | Express | ⭐ (Beginner) |
 
 ---
 
