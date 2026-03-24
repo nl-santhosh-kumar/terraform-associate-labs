@@ -9,6 +9,7 @@ A collection of hands-on labs designed to master Infrastructure as Code (IaC) us
   - [📋 Table of Contents](#-table-of-contents)
   - [🛠 Prerequisites](#-prerequisites)
   - [📂 Lab Structure](#-lab-structure)
+  - [📂 AWS Real World Scenarios](#-aws-real-world-scenarios)
   - [🚀 Getting Started](#-getting-started)
   - [⚠️ Security \& Cost Warning](#️-security--cost-warning)
   - [🧹 Cleanup](#-cleanup)
@@ -40,6 +41,11 @@ Each lab is self-contained within the `/labs` directory:
 | **Lab 05** | [Time Rotating](./labs/05-time-rotating) | Time Rotating | ⭐ (Beginner) |
 | **Lab 06** | [Expressions](./labs/06-expressions) | Express | ⭐ (Beginner) |
 | **Lab 07** | [Conditional Statement](./labs/07-conditional-statements) | Express | ⭐ (Beginner) |
+
+## 📂 AWS Real World Scenarios
+| Name | Focus Area | Difficulty |
+| :--- | :--- | :--- |
+| [Static Site With CloudFront](./aws/static-site-with-cloud-front) | The Professional Way to Host Static Content on AWS using Terraform | ⭐ (Beginner) |
 
 ---
 
