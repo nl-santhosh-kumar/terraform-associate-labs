@@ -74,6 +74,93 @@ Below are the details required to create a cloud front distribution
 6. Cache & Behavior Settings
 7. Web Application Firewall 
 
+# 1. Choose a plan and Distribution Type in cloud front
+Let's create a s3 distribution and configure it
+* Origin Details
+* Domain Name: Use the regional domain name of the S3 bucket as the origin 
+* Origin Id: S3 Origin ID
+* Origin Access Control ID: Id of the Origin Access Control to set the bucket only accessible via the access control id.
+
+Since we need the OAC ID (Origin Access Control), lets create it first.
+
+# Create OAC 
+```hcl
+resource "aws_cloudfront_origin_access_control" "default_oac" {
+  name = "default-oac"
+  signing_behavior = "always"
+  signing_protocol = "sigv4" 
+  origin_access_control_origin_type = "s3" 
+}
+```
+
+Now, lets use this in the S3 Distribution 
+
+```hcl
+resource "aws_cloudfront_distribution" "s3_distribution" {
+  origin {
+    domain_name = aws_s3_bucket.static_site.bucket_regional_domain_name # Use the regional domain name of the S3 bucket as the origin
+    origin_id   = local.s3_origin_id # Use a local variable for the origin ID
+    origin_access_control_id = aws_cloudfront_origin_access_control.default_oac.id # Reference the OAC created above to restrict access to the S3 bucket
+  }
+
+  enabled             = true
+  is_ipv6_enabled     = true
+  comment             = "CloudFront distribution for my static site"
+  default_root_object = "index.html"
+} 
+```
+
+# Define Cache Behavior 
+As part of defining cache behavior, 
+* Target Origin ID : should point to S3 Origin ID
+* Viewer Protocol Policy: Redirect HTTP request to HTTPS request
+* Allowed Methods: Configure which methods are allowed to cache
+* Cache Methods: Configure what requests can be cached
+  
+Along with this, configure Forwarded Values, such as query string and cookies. Based on the application setup you can determine these values.
+
+```hcl
+  default_cache_behavior {
+    target_origin_id       = local.s3_origin_id # Reference the origin ID defined above
+    viewer_protocol_policy = "redirect-to-https" # Redirect HTTP requests to HTTPS
+
+    allowed_methods = ["GET", "HEAD"] # Allow only GET and HEAD methods for caching
+    cached_methods  = ["GET", "HEAD"] # Cache only GET and HEAD requests
+
+    forwarded_values {
+      query_string = false # Do not forward query strings to the origin
+
+      cookies {
+        forward = "none" # Do not forward cookies to the origin
+      }
+    }
+  }
+```
+This goes part of the Cloud Front Distribution.
+
+Additionally you can define restriction on the distribution such as Geo Restriction,
+```hcl
+  restrictions {
+    geo_restriction {
+      restriction_type = "none" # No geographic restrictions on content access
+    }
+  }
+```
+A Viewer Certificate is the configuration block in CloudFront that determines how your distribution handles SSL/TLS encryption for your end users. When a user visits your website (e.g., https://www.yourdomain.com), the Viewer Certificate is what provides the digital handshake to ensure the connection is secure and that the user is actually talking to your server, not an imposter.
+Why is it needed?
+In the world of modern web hosting, HTTPS is non-negotiable. Browsers will flag your site as "Not Secure" without it. The viewer_certificate block tells AWS which SSL certificate to use to prove your site's identity.
+
+| Option                        | Use Case                                                                              | Cost                   |
+| :---                          |  :---                                                                                 | :---                   |
+|CloudFront Default Certificate | Used for the default AWS domain (e.g., d1234.cloudfront.net)                          | Free                   |
+|ACM Certificate                | Used for custom domains (e.g., www.example.com). Managed via AWS Certificate Manager. |Free (for public certs) |
+
+```hcl
+viewer_certificate {
+    cloudfront_default_certificate = true
+  }
+```
+
 # Configuring OAC when creating a new CloudFront distribution
 ![Create Distribution](image.png)
 Once the distribution is successfully created, you must update the s3 bucket policy. Before that, lets create OAC with terraform.
