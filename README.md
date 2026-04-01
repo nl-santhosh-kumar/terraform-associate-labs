@@ -82,6 +82,8 @@ Each lab is self-contained within the `/labs` directory:
 
 ---
 
+[![Read the Document]](https://github.com/nl-santhosh-kumar/terraform-associate-labs/blob/main/Terraform_Cheat_Sheet.pdf)
+
 ## 🧹 Cleanup
 
 To avoid ongoing charges, remember to destroy the resources once you have finished a lab:
